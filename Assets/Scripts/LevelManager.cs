@@ -5,9 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public string sceneToLoad; // The name of the scene to load
-    public TransitionManager transitionManager;
+    private TransitionManager transitionManager;
+    public static LevelManager Instance { get; private set; }
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // duplicate, destroy this scene copy
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        transitionManager = TransitionManager.Instance;
+        if (transitionManager == null)
+        {
+            Debug.LogError("TransitionManager instance not found. Please ensure it is present in the scene.");
+            return;
+        }
+    }
     public void loadNextScene()
     {
         StartCoroutine(loadNextSceneRoutine());
