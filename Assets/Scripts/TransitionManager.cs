@@ -18,15 +18,13 @@ public class TransitionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public IEnumerator enterScene()
+    public void enterScene()
     {
         animator.SetTrigger("enterScene");
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
-    public IEnumerator exitScene()
+    public void exitScene()
     {
         animator.SetTrigger("exitScene");
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
     }
 }

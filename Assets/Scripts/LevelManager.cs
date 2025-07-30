@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    void Start()
     {
         transitionManager = TransitionManager.Instance;
         if (transitionManager == null)
@@ -50,13 +50,24 @@ public class LevelManager : MonoBehaviour
             yield break;
         }
 
-        yield return transitionManager.exitScene();
+        transitionManager.exitScene();
+        yield return new WaitForSecondsRealtime(1.5f);
+        SceneManager.LoadScene(nextSceneIndex);
+        transitionManager.enterScene();
+
+        // We could try async loading, but this code below caused inconsistent loading. Sometimes the next scene would load before the transition animation finished.
+        /*
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex);
+        asyncLoad.allowSceneActivation = false;
+        transitionManager.exitScene();
+        yield return new WaitForSecondsRealtime(1.5f);
+        asyncLoad.allowSceneActivation = true;
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
-        yield return transitionManager.enterScene();
+        transitionManager.enterScene();
+        */
     }
 
     private IEnumerator loadSceneRoutine(string sceneToLoad)
@@ -67,12 +78,9 @@ public class LevelManager : MonoBehaviour
             yield break;
         }
 
-        yield return transitionManager.exitScene();
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        yield return transitionManager.enterScene();
+        transitionManager.exitScene();
+        yield return new WaitForSecondsRealtime(1.5f);
+        SceneManager.LoadScene(sceneToLoad);
+        transitionManager.enterScene();
     }
 }
