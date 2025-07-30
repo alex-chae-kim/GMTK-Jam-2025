@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public string sceneToLoad; // The name of the scene to load
+    public TransitionManager transitionManager;
 
     public void loadNextScene()
     {
@@ -28,11 +29,13 @@ public class LevelManager : MonoBehaviour
             yield break;
         }
 
+        yield return transitionManager.exitScene();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
+        yield return transitionManager.enterScene();
     }
 
     private IEnumerator loadSceneRoutine(string sceneToLoad)
@@ -43,10 +46,12 @@ public class LevelManager : MonoBehaviour
             yield break;
         }
 
+        yield return transitionManager.exitScene();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
+        yield return transitionManager.enterScene();
     }
 }
