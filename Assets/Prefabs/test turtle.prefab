@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5718910093507232989}
   - component: {fileID: 659883171869192944}
   - component: {fileID: 963006857951785452}
-  - component: {fileID: 453138257890504992}
   m_Layer: 0
   m_Name: test turtle
   m_TagString: Untagged
@@ -81,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fb916e968ab41094b85b4f6dda5d5849, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -105,7 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3d357dc38754849a79a2767091b1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  controlsEnabled: 1
+  moveSpeed: 2
   jumpForce: 5
   fallGravityMultiplier: 3
   normalGravityScale: 2
@@ -119,8 +119,13 @@ MonoBehaviour:
   iceLayer:
     serializedVersion: 2
     m_Bits: 128
+  gameManager: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   lifetime: 10
   shellPrefab: {fileID: 1209844875217372562, guid: b9990b8b8422b3e4a918d07726ab9300, type: 3}
+  camera: {fileID: 0}
+  rb: {fileID: 0}
+  moveInput: 0
 --- !u!50 &5718910093507232989
 Rigidbody2D:
   serializedVersion: 5
@@ -231,29 +236,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.37720096, y: 0.30800104}
   m_EdgeRadius: 0
---- !u!114 &453138257890504992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5101281099960461992}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec31c6c314f5724fab0f60a4792ed57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundMoveSpeed: 10
-  iceAcceleration: 20
-  maxIceSpeed: 10
-  jumpForce: 12
-  gravity: -20
-  fallMultiplier: 2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheck: {fileID: 3655259637283867328}
-  groundCheckRadius: 0.2
 --- !u!1 &8489363852449655241
 GameObject:
   m_ObjectHideFlags: 0

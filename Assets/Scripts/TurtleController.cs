@@ -18,6 +18,7 @@ public class TurtleController : MonoBehaviour
     public LayerMask whatIsGround;
     public LayerMask iceLayer;
     public GameManager gameManager;
+    public SpriteRenderer spriteRenderer;
 
     //other
     public float lifetime;
@@ -34,6 +35,7 @@ public class TurtleController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -44,7 +46,10 @@ public class TurtleController : MonoBehaviour
         if (controlsEnabled && !dead)
         {
             moveInput = Input.GetAxisRaw("Horizontal");
-
+            if (moveInput > 0)
+                spriteRenderer.flipX = false; // Facing right
+            else if (moveInput < 0)
+                spriteRenderer.flipX = true; // Facing left
             if (Input.GetButtonDown("Jump") && isGrounded)
                 Jump();
 
@@ -55,8 +60,6 @@ public class TurtleController : MonoBehaviour
                 StartCoroutine(turtleDeath());
             }
         }
-        
-        
     }
 
     void FixedUpdate()
