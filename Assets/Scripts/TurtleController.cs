@@ -16,15 +16,18 @@ public class TurtleController : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask whatIsGround;
     public LayerMask iceLayer;
+    public GameManager gameManager;
 
     //other
     public float lifetime;
     public GameObject shellPrefab;
+    public GameObject camera;
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private float moveInput;
     private CapsuleCollider2D capsuleCollider;
+    private bool dead = false;
 
     void Awake()
     {
@@ -43,8 +46,9 @@ public class TurtleController : MonoBehaviour
             Jump();
 
         lifetime -= Time.deltaTime;
-        if (lifetime <= 0 || Input.GetKeyDown(KeyCode.Q))
+        if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
         {
+            dead = true;
             StartCoroutine(turtleDeath());
         }
     }
@@ -99,12 +103,21 @@ public class TurtleController : MonoBehaviour
 
     public IEnumerator turtleDeath()
     {
+        Debug.Log("TurtleDeath called");
+        bool once = true;
         // Freeze all movement
         rb.constraints = RigidbodyConstraints2D.FreezeAll; 
         capsuleCollider.enabled = false; // Disable collider to prevent further interactions
         // Play death animation
         yield return new WaitForSeconds(2f);
         GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
+        if (once)
+        {
+            once = false;
+            gameManager.initiateNextTurtleLife();
+        }
+        yield return new WaitForSeconds(2f);
+        Destroy(camera); // Destroy the camera object
         Destroy(gameObject); // Destroy the turtle object
         // Disable camera and pan back to start
         // Get rid of turtle and replace it with shell object
