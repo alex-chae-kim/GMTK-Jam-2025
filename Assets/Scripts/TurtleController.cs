@@ -6,6 +6,7 @@ using System.Collections;
 public class TurtleController : MonoBehaviour
 {
     // movement variables
+    public bool controlsEnabled = true;
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
     public float fallGravityMultiplier = 2f;
@@ -40,17 +41,22 @@ public class TurtleController : MonoBehaviour
         airAcceleration = moveSpeed;
         iceAcceleration = 5 * moveSpeed;
 
-        moveInput = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-            Jump();
-
-        lifetime -= Time.deltaTime;
-        if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
+        if (controlsEnabled && !dead)
         {
-            dead = true;
-            StartCoroutine(turtleDeath());
+            moveInput = Input.GetAxisRaw("Horizontal");
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+                Jump();
+
+            lifetime -= Time.deltaTime;
+            if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
+            {
+                dead = true;
+                StartCoroutine(turtleDeath());
+            }
         }
+        
+        
     }
 
     void FixedUpdate()

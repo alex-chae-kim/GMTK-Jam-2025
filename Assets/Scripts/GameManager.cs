@@ -1,17 +1,20 @@
 using UnityEngine;
 using System.Collections;
 using Unity.Cinemachine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
+    public int currentLevel = 0;
     public GameObject turtlePrefab;
     public GameObject cinemachineCameraPrefab;
 
-    public Transform turtleSpawnPoint;
-    public Transform camSpawnPoint;
+    [SerializeField]
+    public LevelSpawnPoints[] levelSpawnPoints;
 
     private float moveSpeed = 2f;
     private float jumpForce = 5f;
+    private float turtleHealth = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,7 +28,8 @@ public class GameManager : MonoBehaviour
     }
     public void initiateNextTurtleLife()
     {
-        // get info about current level
+        Transform turtleSpawn = levelSpawnPoints[currentLevel].turtleSpawnPoint;
+        Transform camSpawn = levelSpawnPoints[currentLevel].camSpawnPoint;
         // prompt user for upgrades
         // instantiate turtle
     }
