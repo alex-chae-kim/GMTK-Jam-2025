@@ -846,12 +846,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac907aa297b2434ba7e0690764cf04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card1: {fileID: 1949171532}
-  card2: {fileID: 1716991757}
-  card3: {fileID: 1058595807}
+  cards:
+  - {fileID: 1949171532}
+  - {fileID: 1716991757}
+  - {fileID: 1058595807}
   powerUps:
   - {fileID: 11400000, guid: 8a71ace3acbb0a0438271d2a07d9aa9e, type: 2}
   - {fileID: 11400000, guid: 51deb41d60b5abe448332deb081ebb73, type: 2}
+  - {fileID: 11400000, guid: 6189aa0a4ca973e47998ed27775dca4d, type: 2}
+  - {fileID: 11400000, guid: b9b2e8ea548c10d4f8d8e5909bff64be, type: 2}
+  - {fileID: 11400000, guid: 188a3079a4e8f55408e9983c96e0377f, type: 2}
+  - {fileID: 11400000, guid: 9cb9fef73afcd054380391b31441f56f, type: 2}
+  - {fileID: 11400000, guid: 027b9bb8f217b564494bdcd4533a22c6, type: 2}
 --- !u!1001 &70979289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1211,10 +1217,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.101244815
-    y: 0.10176991
-    width: 0.7966805
-    height: 0.79646015
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
