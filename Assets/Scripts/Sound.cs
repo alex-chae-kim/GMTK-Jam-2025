@@ -15,8 +15,8 @@ public class Sound
     public bool music;
     public bool loop;
 
-    
-    public AudioSource source;
+
+    [HideInInspector] public AudioSource source;
     [HideInInspector] public float length;
     [HideInInspector] public float frequency;
     [HideInInspector] public float samples;

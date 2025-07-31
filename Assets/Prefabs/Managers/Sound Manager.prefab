@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Test Sound 1
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 3a7c08468f8a22f40abbbf70d7381b6a, type: 3}
     volume: 1
     pitch: 1
     music: 1
@@ -56,7 +56,7 @@ MonoBehaviour:
     frequency: 0
     samples: 0
   - name: Test Sound 2
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 486e6fe54c075374c9b98d0ab65b6dec, type: 3}
     volume: 1
     pitch: 1
     music: 0
