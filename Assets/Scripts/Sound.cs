@@ -12,11 +12,12 @@ public class Sound
     public float volume;
     [Range(0.1f, 3f)]
     public float pitch;
+    public bool music;
     public bool loop;
 
-    [HideInInspector]
+    
     public AudioSource source;
-    public float length;
-    public float frequency;
-    public float samples;
+    [HideInInspector] public float length;
+    [HideInInspector] public float frequency;
+    [HideInInspector] public float samples;
 }

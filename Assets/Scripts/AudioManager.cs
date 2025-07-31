@@ -6,7 +6,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    public Sound[] sounds;
+    public AudioMixerGroup soundFXGroup;
+    public AudioMixerGroup musicGroup;
+    public SoundManager soundManager;
 
     void Awake()
     {
@@ -19,10 +21,11 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        foreach (Sound s in sounds)
+        foreach (Sound s in soundManager.sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = s.music ? musicGroup : soundFXGroup;
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
@@ -41,7 +44,7 @@ public class AudioManager : MonoBehaviour
     /// <returns>The Sound object being played</returns>
     public Sound Play(string name, double startTimeOffset)
     {
-        Sound s = Array.Find(sounds, sounds => sounds.name == name);
+        Sound s = Array.Find(soundManager.sounds, sounds => sounds.name == name);
         if (s == null)
         {
             return null;
@@ -57,7 +60,7 @@ public class AudioManager : MonoBehaviour
     /// <returns>The Sound object being played</returns>
     public Sound Play(string name)
     {
-        Sound s = Array.Find(sounds, sounds => sounds.name == name);
+        Sound s = Array.Find(soundManager.sounds, sounds => sounds.name == name);
         if (s == null)
         {
             return null;
@@ -73,7 +76,7 @@ public class AudioManager : MonoBehaviour
     /// <returns></returns>
     public void Stop(string name)
     {
-        Sound s = Array.Find(sounds, sounds => sounds.name == name);
+        Sound s = Array.Find(soundManager.sounds, sounds => sounds.name == name);
         if (s == null)
         {
             return;

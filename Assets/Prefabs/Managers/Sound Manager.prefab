@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3324209133010892891
+--- !u!1 &3408220329510689674
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4556409987701976863}
-  - component: {fileID: 1274530453303726908}
+  - component: {fileID: 7108214373637056559}
+  - component: {fileID: 1982861753852195123}
   m_Layer: 0
-  m_Name: Audio Manager
+  m_Name: Sound Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4556409987701976863
+--- !u!4 &7108214373637056559
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324209133010892891}
+  m_GameObject: {fileID: 3408220329510689674}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,18 +32,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1274530453303726908
+--- !u!114 &1982861753852195123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324209133010892891}
+  m_GameObject: {fileID: 3408220329510689674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e948788024c324bb8617f3462a2b84, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a2757a5d2398c14a854b39d4bef61f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundFXGroup: {fileID: -874828868127728202, guid: 1db405029da807240a87319f53b8da8f, type: 2}
-  musicGroup: {fileID: -3036881154596201286, guid: 1db405029da807240a87319f53b8da8f, type: 2}
-  soundManager: {fileID: 1982861753852195123, guid: 952c77b525b856f4cb7f0b2456bdc941, type: 3}
+  sounds:
+  - name: Test Sound 1
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    music: 1
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Test Sound 2
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    music: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
