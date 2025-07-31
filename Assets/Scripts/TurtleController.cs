@@ -24,9 +24,9 @@ public class TurtleController : MonoBehaviour
     public GameObject shellPrefab;
     public GameObject camera;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private bool isGrounded;
-    private float moveInput;
+    public float moveInput;
     private CapsuleCollider2D capsuleCollider;
     private bool dead = false;
 
@@ -89,7 +89,10 @@ public class TurtleController : MonoBehaviour
             currentVelX = Mathf.MoveTowards(currentVelX, targetVelX, accel * Time.fixedDeltaTime);
         }
 
-        rb.linearVelocity = new Vector2(currentVelX, rb.linearVelocity.y);
+        if (controlsEnabled)
+        {
+            rb.linearVelocity = new Vector2(currentVelX, rb.linearVelocity.y);
+        }
     }
 
     void Jump()

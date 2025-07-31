@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private float moveSpeed = 2f;
     private float jumpForce = 5f;
     private float turtleHealth = 10f;
+
+    private float runOutDistance = 10f; // distance to run out before next turtle life
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,8 +32,7 @@ public class GameManager : MonoBehaviour
     {
         Transform turtleSpawn = levelSpawnPoints[currentLevel].turtleSpawnPoint;
         Transform camSpawn = levelSpawnPoints[currentLevel].camSpawnPoint;
-        // prompt user for upgrades
-        // instantiate turtle
+        StartCoroutine(instantiateTurtle(turtleSpawn, camSpawn));
     }
     public IEnumerator instantiateTurtle(Transform turtleSpawnPoint, Transform camSpawnPoint)
     {
@@ -41,13 +42,39 @@ public class GameManager : MonoBehaviour
         TurtleController turtleController = turtle.GetComponent<TurtleController>();
         CinemachineCamera camera = cameraObject.GetComponent<CinemachineCamera>();
         camera.Target.TrackingTarget = turtle.transform;
-        //disable player controlls
+        turtleController.controlsEnabled = false; //disable player controls
+        yield return new WaitForSeconds(2f);
+        // open upgrade menu
+        //wait for user to select upgrades
         turtleController.moveSpeed = moveSpeed;
         turtleController.jumpForce = jumpForce;
+        turtleController.lifetime = turtleHealth;
         turtleController.camera = cameraObject;
         turtleController.gameManager = this;
-        yield return new WaitForSeconds(0.1f);
-
+        // run out animation
+        float time = runOutDistance / moveSpeed;
+        bool breaked = false;
+        while (time > 0)
+        {
+            float currentVelX = moveSpeed;
+            turtleController.rb.linearVelocity = new Vector2(currentVelX, 0f);
+            time -= Time.deltaTime;
+            if (Input.GetAxisRaw("Horizontal") != 0)
+            {
+                turtleController.controlsEnabled = true; // enable player controls
+                turtleController.moveInput = Input.GetAxisRaw("Horizontal");
+                breaked = true;
+                break;
+            }
+            yield return null;
+        }
+        if (!breaked)
+        {
+            turtleController.rb.linearVelocity = new Vector2(0f, 0f);
+            turtleController.controlsEnabled = true;
+        }
         
+        
+
     }
 }

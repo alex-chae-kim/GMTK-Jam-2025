@@ -1438,9 +1438,9 @@ GameObject:
   - component: {fileID: 1464665223}
   - component: {fileID: 1464665222}
   - component: {fileID: 1464665221}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Tile Map (1)
-  m_TagString: Ice
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1934,10 +1934,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4f901ae2832e446903d40cfe7911ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
   turtlePrefab: {fileID: 5101281099960461992, guid: df031b487fb1759488adfabe6d9a0a32, type: 3}
   cinemachineCameraPrefab: {fileID: 452356386723805529, guid: e446b4b6c86e4314395f977e3159e944, type: 3}
-  turtleSpawnPoint: {fileID: 1761648194}
-  camSpawnPoint: {fileID: 1091919199}
   levelSpawnPoints:
   - turtleSpawnPoint: {fileID: 1298696913}
     camSpawnPoint: {fileID: 1195867810}
