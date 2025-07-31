@@ -849,6 +849,9 @@ MonoBehaviour:
   card1: {fileID: 1949171532}
   card2: {fileID: 1716991757}
   card3: {fileID: 1058595807}
+  powerUps:
+  - {fileID: 11400000, guid: 8a71ace3acbb0a0438271d2a07d9aa9e, type: 2}
+  - {fileID: 11400000, guid: 51deb41d60b5abe448332deb081ebb73, type: 2}
 --- !u!1001 &70979289
 PrefabInstance:
   m_ObjectHideFlags: 0
