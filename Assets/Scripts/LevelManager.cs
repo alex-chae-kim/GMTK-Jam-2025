@@ -49,11 +49,9 @@ public class LevelManager : MonoBehaviour
             Debug.LogWarning("No more scenes to load.");
             yield break;
         }
-
-        transitionManager.exitScene();
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return transitionManager.exitScene();
         SceneManager.LoadScene(nextSceneIndex);
-        transitionManager.enterScene();
+        yield return transitionManager.enterScene();
 
         // We could try async loading, but this code below caused inconsistent loading. Sometimes the next scene would load before the transition animation finished.
         /*
@@ -78,9 +76,8 @@ public class LevelManager : MonoBehaviour
             yield break;
         }
 
-        transitionManager.exitScene();
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return transitionManager.exitScene();
         SceneManager.LoadScene(sceneToLoad);
-        transitionManager.enterScene();
+        yield return transitionManager.enterScene();
     }
 }
