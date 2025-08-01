@@ -22,6 +22,7 @@ public class TurtleController : MonoBehaviour
 
     //other
     public float lifetime;
+    public Slider healthBar;
     public GameObject shellPrefab;
     public GameObject camera;
 
@@ -54,6 +55,7 @@ public class TurtleController : MonoBehaviour
                 Jump();
 
             lifetime -= Time.deltaTime;
+            healthBar.value = lifetime;
             if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
             {
                 dead = true;
