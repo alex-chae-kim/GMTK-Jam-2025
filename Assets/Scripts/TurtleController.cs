@@ -30,6 +30,7 @@ public class TurtleController : MonoBehaviour
 
     public Rigidbody2D rb;
     private bool isGrounded;
+    private bool wasFalling;
     public float moveInput;
     private BoxCollider2D boxCollider;
     private PolygonCollider2D polygonCollider;
@@ -74,6 +75,12 @@ public class TurtleController : MonoBehaviour
             if (isGrounded)
             {
                 animator.SetBool("grounded", true);
+                if (wasFalling)
+                {
+                    wasFalling = false;
+                    animator.SetBool("falling", false);
+                    animator.SetTrigger("landed");
+                }
             } 
             else
             {
@@ -95,6 +102,7 @@ public class TurtleController : MonoBehaviour
         if (rb.linearVelocity.y < 0)
         {
             rb.gravityScale = fallGravityMultiplier;
+            wasFalling = true;
             animator.SetBool("falling", true);
         }
         else
