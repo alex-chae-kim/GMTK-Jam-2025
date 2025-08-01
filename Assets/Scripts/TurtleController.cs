@@ -93,9 +93,16 @@ public class TurtleController : MonoBehaviour
     {
         // Adjust gravity scale: double when falling, normal when rising or grounded
         if (rb.linearVelocity.y < 0)
+        {
             rb.gravityScale = fallGravityMultiplier;
+            animator.SetBool("falling", true);
+        }
         else
+        {
             rb.gravityScale = normalGravityScale;
+            animator.SetBool("falling", false);
+        }
+            
 
         // Check ground & surface
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround) || Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, iceLayer);
