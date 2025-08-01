@@ -22,6 +22,7 @@ public class TurtleController : MonoBehaviour
 
     //other
     public float lifetime;
+    public Slider healthBar;
     public GameObject shellPrefab;
     public GameObject camera;
 
