@@ -1707,6 +1707,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 452356386723805529, guid: e446b4b6c86e4314395f977e3159e944, type: 3}
   m_PrefabInstance: {fileID: 2012485772271275846}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1795422490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3392625312598048671, guid: c20017684971f6545be4018df2485f38, type: 3}
+  m_PrefabInstance: {fileID: 7111400709652527302}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1929583258
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,6 +2342,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1657735619}
     - target: {fileID: 7930517256451120121, guid: df031b487fb1759488adfabe6d9a0a32, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1795422490}
+    - target: {fileID: 7930517256451120121, guid: df031b487fb1759488adfabe6d9a0a32, type: 3}
       propertyPath: moveSpeed
       value: 2
       objectReference: {fileID: 0}
@@ -2355,6 +2370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1795422490}
     - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
       propertyPath: levelSpawnPoints.Array.data[0].camSpawnPoint
       value: 
@@ -2672,6 +2691,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3392625312598048671, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7329786218506178193, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_Name
       value: Game UI
@@ -2683,6 +2706,14 @@ PrefabInstance:
     - target: {fileID: 8528656234787573437, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528656234787573437, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4.8499756
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528656234787573437, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.2709999
       objectReference: {fileID: 0}
     - target: {fileID: 9035120268486262753, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_Pivot.x

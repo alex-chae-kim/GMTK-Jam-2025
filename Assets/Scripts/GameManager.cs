@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using Unity.Cinemachine;
 using System;
@@ -6,6 +7,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public int currentLevel = 0;
+    public Slider healthBar;
     public GameObject turtlePrefab;
     public GameObject cinemachineCameraPrefab;
 
@@ -62,7 +64,16 @@ public class GameManager : MonoBehaviour
         turtleController.lifetime = turtleHealth;
         turtleController.camera = cameraObject;
         turtleController.gameManager = this;
-        
+
+        turtleController.healthBar = healthBar;
+
+        if (healthBar != null)
+        {
+            healthBar.maxValue = turtleHealth;
+            healthBar.value = turtleHealth;
+        }
+
+
         // make the turtle run out of the cave a set distance (this is SUPER jank but it works). It is intended behavior that the player can prematurely end
         // the turtle's run out by pressing a movement key
         float time = runOutDistance / moveSpeed;

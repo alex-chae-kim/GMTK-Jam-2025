@@ -43,6 +43,16 @@ public class TurtleController : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
+        if (healthBar != null)
+        {
+            healthBar.maxValue = lifetime;
+            healthBar.value = lifetime;
+        }
+        else
+        {
+            Debug.LogError("Health bar is not assigned!");
+        }
     }
 
     void Update()
@@ -87,7 +97,11 @@ public class TurtleController : MonoBehaviour
                 animator.SetBool("grounded", false);
             }
             lifetime -= Time.deltaTime;
-            healthBar.value = lifetime;
+            if (healthBar != null)
+{
+    healthBar.value = Mathf.Clamp(lifetime, 0, healthBar.maxValue);
+}
+
             if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
             {
                 dead = true;
@@ -178,6 +192,16 @@ public class TurtleController : MonoBehaviour
         // Disable camera and pan back to start
         // Get rid of turtle and replace it with shell object
     }
+
+    public void ResetLifetime(float newLifetime)
+    {
+        lifetime = newLifetime;
+        if (healthBar != null)
+        {
+            healthBar.maxValue = lifetime;
+            healthBar.value = lifetime;
+        }
+        dead = false;
+    }
+
 }
-
-
