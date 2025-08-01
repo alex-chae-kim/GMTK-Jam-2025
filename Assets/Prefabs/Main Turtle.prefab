@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8105279612563685212}
   - component: {fileID: 5352044270460438944}
   m_Layer: 0
-  m_Name: test turtle
+  m_Name: Main Turtle
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,12 +143,13 @@ MonoBehaviour:
   iceLayer:
     serializedVersion: 2
     m_Bits: 128
-  gameManager: {fileID: 0}
-  spriteRenderer: {fileID: 0}
   lifetime: 10
   healthBar: {fileID: 0}
   shellPrefab: {fileID: 1209844875217372562, guid: b9990b8b8422b3e4a918d07726ab9300, type: 3}
   camera: {fileID: 0}
+  gameManager: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 3516581485175089429}
   rb: {fileID: 0}
   moveInput: 0
 --- !u!50 &5718910093507232989

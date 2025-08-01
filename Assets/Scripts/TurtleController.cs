@@ -17,14 +17,16 @@ public class TurtleController : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask whatIsGround;
     public LayerMask iceLayer;
-    public GameManager gameManager;
-    public SpriteRenderer spriteRenderer;
+    
 
     //other
     public float lifetime;
     public Slider healthBar;
     public GameObject shellPrefab;
     public GameObject camera;
+    public GameManager gameManager;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
 
     public Rigidbody2D rb;
     private bool isGrounded;
@@ -39,6 +41,7 @@ public class TurtleController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         polygonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -50,12 +53,32 @@ public class TurtleController : MonoBehaviour
         {
             moveInput = Input.GetAxisRaw("Horizontal");
             if (moveInput > 0)
+            {
+                animator.SetBool("walking", true);
                 transform.localScale = new Vector3(-1, 1, 1); // Facing right
+            }
             else if (moveInput < 0)
+            {
+                animator.SetBool("walking", true);
                 transform.localScale = new Vector3(1, 1, 1); // Facing left
+            }
+            else
+            {
+                animator.SetBool("walking", false);
+            }
             if (Input.GetButtonDown("Jump") && isGrounded)
+            {
                 Jump();
-
+            }
+                
+            if (isGrounded)
+            {
+                animator.SetBool("grounded", true);
+            } 
+            else
+            {
+                animator.SetBool("grounded", false);
+            }
             lifetime -= Time.deltaTime;
             healthBar.value = lifetime;
             if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
@@ -106,6 +129,7 @@ public class TurtleController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        animator.SetTrigger("jump");
     }
 
     void OnDrawGizmosSelected()
