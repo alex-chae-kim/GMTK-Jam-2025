@@ -1597,12 +1597,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3175798925514100114, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_Type
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3175798925514100114, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -150560083739156033, guid: 1b595f725efc02545a3cdd0e363461b3, type: 3}
+    - target: {fileID: 3175798925514100114, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3392625312598048671, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_Value
       value: 1
