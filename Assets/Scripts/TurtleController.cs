@@ -29,13 +29,15 @@ public class TurtleController : MonoBehaviour
     public Rigidbody2D rb;
     private bool isGrounded;
     public float moveInput;
-    private CapsuleCollider2D capsuleCollider;
+    private BoxCollider2D boxCollider;
+    private PolygonCollider2D polygonCollider;
     private bool dead = false;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        polygonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -48,9 +50,9 @@ public class TurtleController : MonoBehaviour
         {
             moveInput = Input.GetAxisRaw("Horizontal");
             if (moveInput > 0)
-                spriteRenderer.flipX = false; // Facing right
+                transform.localScale = new Vector3(-1, 1, 1); // Facing right
             else if (moveInput < 0)
-                spriteRenderer.flipX = true; // Facing left
+                transform.localScale = new Vector3(1, 1, 1); // Facing left
             if (Input.GetButtonDown("Jump") && isGrounded)
                 Jump();
 
@@ -121,7 +123,8 @@ public class TurtleController : MonoBehaviour
         bool once = true;
         // Freeze all movement
         rb.constraints = RigidbodyConstraints2D.FreezeAll; 
-        capsuleCollider.enabled = false; // Disable collider to prevent further interactions
+        Destroy(boxCollider); // Remove box collider
+        Destroy(polygonCollider); // Remove polygon collider
         // Play death animation
         yield return new WaitForSeconds(2f);
         GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
