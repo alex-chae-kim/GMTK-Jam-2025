@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8480068079629098959}
   - component: {fileID: 866347609211860540}
   - component: {fileID: 5437520311784101603}
+  - component: {fileID: 6868096836522853988}
   m_Layer: 6
   m_Name: Turtle Shell
-  m_TagString: Untagged
+  m_TagString: Shell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,3 +173,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.37996846, y: 0.31353652}
   m_EdgeRadius: 0
+--- !u!114 &6868096836522853988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209844875217372562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5bcc74a6871af4194ab371f4e43a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 2.5
