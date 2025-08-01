@@ -10,7 +10,9 @@ public class PowerUpUI : MonoBehaviour
     
     public GameObject[] cards;
     public PowerUp[] powerUps;
-    
+    public GameObject player;
+    PowerUp[] currentPowers;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,30 +21,8 @@ public class PowerUpUI : MonoBehaviour
         //GameObject description2 = cards[1].gameObject.transform.GetChild(2).gameObject;
         //description2.GetComponent<TextMeshProUGUI>().text = powerUps[0].description;
 
-        PowerUp[] currentPowers = new PowerUp[cards.Length];
-        for(int i = 0;i<cards.Length; i++) 
-        {
-            
-            int rand = Random.Range(0,powerUps.Length);
-            PowerUp chosenPower = powerUps[rand];
-            currentPowers[i] = chosenPower;
-
-            GameObject name = cards[i].gameObject.transform.GetChild(3).gameObject;
-            name.GetComponent<TextMeshProUGUI>().text = chosenPower.name;
-            print(chosenPower.name);
-            GameObject description = cards[i].gameObject.transform.GetChild(2).gameObject;
-            description.GetComponent<TextMeshProUGUI>().text = chosenPower.description;
-
-            GameObject image = cards[i].gameObject.transform.GetChild(4).gameObject;
-            image.GetComponent<Image>().sprite = chosenPower.image;
-
-            GameObject button = cards[i].gameObject.transform.GetChild(1).gameObject;
-            button.GetComponentInChildren<TextMeshProUGUI>().text = chosenPower.name;
-
-
-
-
-        }
+        player = GameObject.FindWithTag("Player");
+        
 
     }
 
@@ -54,10 +34,44 @@ public class PowerUpUI : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        currentPowers = new PowerUp[cards.Length];
+        for (int i = 0; i < cards.Length; i++)
+        {
+
+            int rand = Random.Range(0, powerUps.Length);
+            PowerUp chosenPower = powerUps[rand];
+            print(chosenPower);
+            currentPowers[i] = chosenPower;
+
+            GameObject name = cards[i].gameObject.transform.GetChild(3).gameObject;
+            name.GetComponent<TextMeshProUGUI>().text = chosenPower.name;
+            
+            GameObject description = cards[i].gameObject.transform.GetChild(2).gameObject;
+            description.GetComponent<TextMeshProUGUI>().text = chosenPower.description;
+
+            GameObject image = cards[i].gameObject.transform.GetChild(4).gameObject;
+            image.GetComponent<Image>().sprite = chosenPower.image;
+
+            GameObject button = cards[i].gameObject.transform.GetChild(1).gameObject;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = chosenPower.name;
+
+
+        }
     }
     private void generateCards()
     {
         
+    }
+
+    public void selectPower(int index)
+    {
+        TurtleController playerController = player.GetComponent<TurtleController>();
+        print(currentPowers[index]);
+        playerController.jumpForce += currentPowers[index].jumpBuff;
+        playerController.lifetime += currentPowers[index].lifeBuff;
+        playerController.moveSpeed += currentPowers[index].speedBuff;
+        
+
+        this.gameObject.SetActive(false);
     }
 }
