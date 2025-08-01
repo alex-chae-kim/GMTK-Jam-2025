@@ -1012,10 +1012,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.4791209
-    y: 0.021484375
-    width: 0.7032967
-    height: 0.703125
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -1064,9 +1064,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
+  m_AssetsPPU: 32
+  m_RefResolutionX: 640
+  m_RefResolutionY: 360
   m_CropFrame: 3
   m_GridSnapping: 2
   m_FilterMode: 0
@@ -2703,6 +2703,14 @@ PrefabInstance:
     - target: {fileID: 1148734079591036329, guid: bc2c7ee9bb33aa84caadcdf0e32e8ac3, type: 3}
       propertyPath: m_Name
       value: Turtle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8556840963021158153, guid: bc2c7ee9bb33aa84caadcdf0e32e8ac3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 743d1a6be6ec20c4b8ef77c687ba08ac, type: 3}
+    - target: {fileID: 8556840963021158153, guid: bc2c7ee9bb33aa84caadcdf0e32e8ac3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
