@@ -2704,14 +2704,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turtle
       objectReference: {fileID: 0}
-    - target: {fileID: 8556840963021158153, guid: bc2c7ee9bb33aa84caadcdf0e32e8ac3, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 743d1a6be6ec20c4b8ef77c687ba08ac, type: 3}
-    - target: {fileID: 8556840963021158153, guid: bc2c7ee9bb33aa84caadcdf0e32e8ac3, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
