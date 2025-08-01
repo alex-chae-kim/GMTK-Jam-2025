@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 
 public class PowerUpUI : MonoBehaviour
 {
-    
+    public GameManager gameManager;
     public GameObject[] cards;
     public PowerUp[] powerUps;
     public GameObject player;
@@ -67,10 +67,15 @@ public class PowerUpUI : MonoBehaviour
     {
         TurtleController playerController = player.GetComponent<TurtleController>();
         print(currentPowers[index]);
+        // Apply the buffs to the active turtle
         playerController.jumpForce += currentPowers[index].jumpBuff;
         playerController.lifetime += currentPowers[index].lifeBuff;
         playerController.moveSpeed += currentPowers[index].speedBuff;
-        
+
+        // Apply the buffs to the game manager so future turtles inherit the buffs
+        gameManager.jumpForce += currentPowers[index].jumpBuff;
+        gameManager.turtleHealth += currentPowers[index].lifeBuff;
+        gameManager.moveSpeed += currentPowers[index].speedBuff;
 
         this.gameObject.SetActive(false);
     }

@@ -1540,6 +1540,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8360862305304932229, guid: c20017684971f6545be4018df2485f38, type: 3}
   m_PrefabInstance: {fileID: 1040516909}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &905200129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
+  m_PrefabInstance: {fileID: 1040516909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905200127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac907aa297b2434ba7e0690764cf04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &973740596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,6 +1595,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1950046976}
     - target: {fileID: 7329786218506178193, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_Name
       value: Game UI
@@ -2761,6 +2776,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 2072398382}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: powerUpUI
+      value: 
+      objectReference: {fileID: 905200129}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: powerUpUIPrefab
+      value: 
+      objectReference: {fileID: 905200127}
     - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
       propertyPath: levelSpawnPoints.Array.data[0].camSpawnPoint
       value: 

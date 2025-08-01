@@ -186,7 +186,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5101281099960461992}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -271,11 +271,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.44163275, y: -0.16503131}
+    - - {x: -0.15560997, y: -0.501889}
+      - {x: 0.40158615, y: -0.501889}
+      - {x: 0.4393724, y: -0.4693637}
+      - {x: 0.43719304, y: -0.16725099}
       - {x: 0.4026349, y: -0.025568485}
       - {x: 0.20971131, y: 0.13223135}
       - {x: -0.17458647, y: 0.12835765}
       - {x: -0.18904942, y: -0.16218996}
+      - {x: -0.18904942, y: -0.16218996}
+      - {x: -0.18904942, y: -0.4685321}
+      - {x: -0.18904942, y: -0.4685321}
+      - {x: -0.18904942, y: -0.4685321}
   m_UseDelaunayMesh: 0
 --- !u!114 &5352044270460438944
 MonoBehaviour:
