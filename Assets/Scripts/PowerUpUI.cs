@@ -37,6 +37,7 @@ public class PowerUpUI : MonoBehaviour
 
     private void OnEnable()
     {
+        gameManager.pauseGame();
         if(!special)
         {
             generateCards();
@@ -112,7 +113,7 @@ public class PowerUpUI : MonoBehaviour
         gameManager.turtleHealth += currentPowers[index].lifeBuff;
         gameManager.moveSpeed += currentPowers[index].speedBuff;
 
-        
+        gameManager.resumeGame();
         this.gameObject.SetActive(false);
         special = false;
     }
