@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using Unity.Cinemachine;
 using System;
@@ -6,8 +7,11 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public int currentLevel = 0;
+    public Slider healthBar;
     public GameObject turtlePrefab;
     public GameObject cinemachineCameraPrefab;
+    public GameObject powerUpUIPrefab;
+    public PowerUpUI powerUpUI;
 
     [SerializeField]
     public LevelSpawnPoints[] levelSpawnPoints;
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("instantiateTurtle called");
         GameObject turtle = Instantiate(turtlePrefab, turtleSpawnPoint.position, Quaternion.identity);
         GameObject cameraObject = Instantiate(cinemachineCameraPrefab.gameObject, camSpawnPoint.position, Quaternion.identity);
+        Turtle_Pickup turtlePickup = turtle.GetComponent<Turtle_Pickup>();
         TurtleController turtleController = turtle.GetComponent<TurtleController>();
         CinemachineCamera camera = cameraObject.GetComponent<CinemachineCamera>();
 
@@ -51,10 +56,8 @@ public class GameManager : MonoBehaviour
         // wait for a short time to allow the camera to focus on the turtle
         yield return new WaitForSeconds(2f);
 
-        // TODO : 
-        // open upgrade menu
-        // wait for user to select upgrades
-        // set the new movespeed, jump force, and turtle health based on the selected upgrades. Set them by modifying the values in the GameManager.
+        // set the player reference in the powerUpUI script
+        powerUpUI.player = turtle; 
 
         // set the turtle's properties
         turtleController.moveSpeed = moveSpeed;
@@ -62,7 +65,16 @@ public class GameManager : MonoBehaviour
         turtleController.lifetime = turtleHealth;
         turtleController.camera = cameraObject;
         turtleController.gameManager = this;
-        
+        turtlePickup.powerUpUI = powerUpUIPrefab;
+        turtleController.healthBar = healthBar;
+
+        if (healthBar != null)
+        {
+            healthBar.maxValue = turtleHealth;
+            healthBar.value = turtleHealth;
+        }
+
+
         // make the turtle run out of the cave a set distance (this is SUPER jank but it works). It is intended behavior that the player can prematurely end
         // the turtle's run out by pressing a movement key
         float time = runOutDistance / moveSpeed;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ice
   - Shell
+  - Pickup
   layers:
   - Default
   - TransparentFX
