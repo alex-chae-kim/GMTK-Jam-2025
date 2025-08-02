@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 960585647744421004}
   - component: {fileID: 3234344737355823626}
   - component: {fileID: 6322933741651015083}
+  - component: {fileID: 1826951795242847947}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -344,6 +345,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1826951795242847947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202939926378772688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6339450230efe14a9f55b1e32457968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggImage: {fileID: 1387769954701679879}
+  tiltAngle: 15
+  tiltSpeed: 0.1
 --- !u!1 &4356276208838100424
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6666667}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.69411767}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -460,6 +476,7 @@ GameObject:
   - component: {fileID: 1791085905672882385}
   - component: {fileID: 6203693472418086741}
   - component: {fileID: 8593093188463002435}
+  - component: {fileID: 4555947178022783588}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -581,6 +598,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4555947178022783588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5980062201679647175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6339450230efe14a9f55b1e32457968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggImage: {fileID: 4536574154788549517}
+  tiltAngle: 15
+  tiltSpeed: 0.1
 --- !u!1 &6538227460143684819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,7 +1481,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1078516941080822257, guid: 190ed0129819d9c459f5e3f321cc5f1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2223990406407668805}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6797667557753022235, guid: 190ed0129819d9c459f5e3f321cc5f1f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6043723831302554602}
   m_SourcePrefab: {fileID: 100100000, guid: 190ed0129819d9c459f5e3f321cc5f1f, type: 3}
 --- !u!1 &1261104436128917562 stripped
 GameObject:
@@ -1461,6 +1496,26 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1078516941080822257, guid: 190ed0129819d9c459f5e3f321cc5f1f, type: 3}
   m_PrefabInstance: {fileID: 4327320671549512879}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7087418527362661300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6797667557753022235, guid: 190ed0129819d9c459f5e3f321cc5f1f, type: 3}
+  m_PrefabInstance: {fileID: 4327320671549512879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6043723831302554602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087418527362661300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6339450230efe14a9f55b1e32457968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggImage: {fileID: 2223990406407668805}
+  tiltAngle: 15
+  tiltSpeed: 0.1
 --- !u!1001 &5315127926060716159
 PrefabInstance:
   m_ObjectHideFlags: 0
