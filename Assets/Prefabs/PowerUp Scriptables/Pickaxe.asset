@@ -20,4 +20,4 @@ MonoBehaviour:
   jumpBuff: 0
   lifeBuff: 0
   special: Pickaxe
-  color: {r: 1, g: 0.5896226, b: 0.66574204, a: 1}
+  color: {r: 0.7830189, g: 0.31394625, b: 0.51116997, a: 1}
