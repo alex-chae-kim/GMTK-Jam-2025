@@ -48,7 +48,6 @@ public class PowerUpUI : MonoBehaviour
         if (gameManager.numLives == 0)
         {
             print("Setting powerup counts to 0");
-            maxLevel = 3;
             for (int i = 0; i < powerUps.Length; i++)
             {
                 powerUps[i].count = 0;
