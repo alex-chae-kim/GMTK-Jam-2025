@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using System.Linq;
+using UnityEditor;
 
 
 
@@ -14,7 +15,7 @@ public class PowerUpUI : MonoBehaviour
     public GameObject player;
     PowerUp[] currentPowers;
 
-    [SerializeField] int maxLevel = 1;
+    [SerializeField] int maxLevel = 3;
     public bool special = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,8 +42,10 @@ public class PowerUpUI : MonoBehaviour
     private void OnEnable()
     {
         gameManager.pauseGame();
-        if(gameManager.numLives == 1)
+        print("Current Life: " + gameManager.numLives);
+        if (gameManager.numLives == 0)
         {
+            maxLevel = 3;
             for (int i = 0; i < powerUps.Length; i++)
             {
                 powerUps[i].count = 0;
@@ -72,16 +75,16 @@ public class PowerUpUI : MonoBehaviour
             GameObject name = cards[i].gameObject.transform.GetChild(1).gameObject;
             name.GetComponent<TextMeshProUGUI>().text = chosenPower.name;
 
-            
+            GameObject image = cards[i].gameObject.transform.GetChild(2).gameObject;
             
 
             GameObject button = cards[i].gameObject.transform.GetChild(0).gameObject;
             if (chosenPower.count >= maxLevel)
             {
-                print("Max Level:" + maxLevel);
-                print(chosenPower.count >= maxLevel);
+                image.GetComponent<Image>().color = Color.gray;
                 button.GetComponentInChildren<TextMeshProUGUI>().text = "Maxed";
-                button.GetComponent<Button>().enabled = false;
+                button.GetComponent<Button>().interactable = false;
+                button.GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
             }
         }
     }

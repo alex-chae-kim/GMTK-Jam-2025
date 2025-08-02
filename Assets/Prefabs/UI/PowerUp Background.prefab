@@ -442,10 +442,11 @@ MonoBehaviour:
   - {fileID: 2884094733759558703}
   - {fileID: 1261104436128917562}
   powerUps:
-  - {fileID: 11400000, guid: 8a71ace3acbb0a0438271d2a07d9aa9e, type: 2}
   - {fileID: 11400000, guid: 51deb41d60b5abe448332deb081ebb73, type: 2}
   - {fileID: 11400000, guid: 9cb9fef73afcd054380391b31441f56f, type: 2}
+  - {fileID: 11400000, guid: 8a71ace3acbb0a0438271d2a07d9aa9e, type: 2}
   player: {fileID: 0}
+  maxLevel: 3
   special: 0
 --- !u!1 &5980062201679647175
 GameObject:

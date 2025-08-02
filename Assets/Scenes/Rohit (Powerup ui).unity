@@ -1302,6 +1302,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2758585613716744486, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758585613716744486, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758585613716744486, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758585613716744486, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: maxLevel
       value: 1
@@ -1317,7 +1333,7 @@ PrefabInstance:
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: 'powerUps.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 9cb9fef73afcd054380391b31441f56f, type: 2}
+      objectReference: {fileID: 11400000, guid: 8a71ace3acbb0a0438271d2a07d9aa9e, type: 2}
     - target: {fileID: 4187186993454762102, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
@@ -2100,6 +2116,14 @@ PrefabInstance:
       propertyPath: powerUpUI
       value: 
       objectReference: {fileID: 68263610}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: turtleWalking
+      value: 
+      objectReference: {fileID: 3366690489441453339, guid: d708de733fb193149940bd54162ff023, type: 3}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: turtleCrawling
+      value: 
+      objectReference: {fileID: 5101281099960461992, guid: df031b487fb1759488adfabe6d9a0a32, type: 3}
     - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
       propertyPath: powerUpUIPrefab
       value: 
