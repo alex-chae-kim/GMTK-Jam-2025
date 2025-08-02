@@ -42,4 +42,15 @@ public class EggTilt : MonoBehaviour, IPointerEnterHandler
         Debug.Log("Egg tilted back to original position");
         isTilting = false;
     }
+
+    public void ResetTilt()
+    {
+        if (isTilting)
+        {
+            StopCoroutine(TiltEgg());
+            isTilting = false;
+        }
+        eggImage.rectTransform.localRotation = Quaternion.identity;
+        Debug.Log("Egg tilt reset");
+    }
 }

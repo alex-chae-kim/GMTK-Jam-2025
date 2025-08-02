@@ -1319,6 +1319,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: maxLevel
       value: 1
       objectReference: {fileID: 0}
@@ -1567,6 +1571,10 @@ PrefabInstance:
     - target: {fileID: 4312329963883131618, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044017059945149528, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
+      propertyPath: powerUpUI
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7044017059945149528, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
       propertyPath: specialAbility
@@ -2285,6 +2293,10 @@ PrefabInstance:
     - target: {fileID: 4312329963883131618, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044017059945149528, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
+      propertyPath: powerUpUI
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7044017059945149528, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
       propertyPath: specialAbility

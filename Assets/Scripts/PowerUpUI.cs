@@ -5,15 +5,17 @@ using Unity.VisualScripting;
 using System.Linq;
 using UnityEditor;
 
-
-
 public class PowerUpUI : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject[] cards;
     public PowerUp[] powerUps;
     public GameObject player;
+    public TextMeshProUGUI descriptionText;
     PowerUp[] currentPowers;
+    public EggTilt eggTilt1;
+    public EggTilt eggTilt2;
+    public EggTilt eggTilt3;
 
     [SerializeField] int maxLevel = 3;
     public bool special = false;
@@ -64,8 +66,10 @@ public class PowerUpUI : MonoBehaviour
     }
     private void generateCards()
     {
-        
-        
+        eggTilt1.ResetTilt();
+        eggTilt2.ResetTilt();
+        eggTilt3.ResetTilt();
+
         currentPowers = new PowerUp[cards.Length];
         for (int i = 0; i < powerUps.Length; i++)
         {
@@ -94,21 +98,24 @@ public class PowerUpUI : MonoBehaviour
 
     public void generateSpecial(PowerUp specialPower)
     {
+        eggTilt2.ResetTilt();
         this.gameObject.SetActive(true);
         cards[0].SetActive(false);
         cards[2].SetActive(false);
         currentPowers[1] = specialPower;
 
+        descriptionText.text = "A special power-up has been found!";
+
         GameObject name = cards[1].gameObject.transform.GetChild(1).gameObject;
         name.GetComponent<TextMeshProUGUI>().text = specialPower.name;
-
-        
+        //color
 
         GameObject image = cards[1].gameObject.transform.GetChild(2).gameObject;
         //image.GetComponent<Image>().sprite = specialPower.image;
 
         GameObject button = cards[1].gameObject.transform.GetChild(0).gameObject;
-        //button.GetComponentInChildren<TextMeshProUGUI>().text = specialPower.name;
+        button.GetComponentInChildren<TextMeshProUGUI>().text = "Unlock";
+        //color
 
 
         if(specialPower.special == "DoubleJump")
