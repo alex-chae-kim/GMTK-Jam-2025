@@ -24,7 +24,7 @@ public class PowerUpUI : MonoBehaviour
         //GameObject description2 = cards[1].gameObject.transform.GetChild(2).gameObject;
         //description2.GetComponent<TextMeshProUGUI>().text = powerUps[0].description;
 
-        //player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
         
 
     }
@@ -95,6 +95,10 @@ public class PowerUpUI : MonoBehaviour
            TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.maxJumps++;
             playerController.numJumpsRemaining = playerController.maxJumps;
+        }else if(specialPower.special == "Dash")
+        {
+            TurtleController playerController = player.GetComponent<TurtleController>();
+            playerController.canDash = true;
         }
 
     }

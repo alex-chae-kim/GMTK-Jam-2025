@@ -17,11 +17,17 @@ public class TurtleController : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask whatIsGround;
     public LayerMask iceLayer;
+    private bool isDashing = false;
+    [SerializeField] float dashingPower = 10f;
+    [SerializeField] float dashingTime = 0.2f;
+    [SerializeField] float dashingCooldown = 1f;
 
     //Variables Altered by Powerups
     public int maxJumps = 1;
     public int numJumpsRemaining;
+    public bool canDash = false;
     
+
 
     //other
     public float lifetime;
@@ -42,6 +48,7 @@ public class TurtleController : MonoBehaviour
 
     void Awake()
     {
+        canDash = false;
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         polygonCollider = GetComponent<PolygonCollider2D>();
@@ -57,6 +64,10 @@ public class TurtleController : MonoBehaviour
 
     void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
         airAcceleration = moveSpeed;
         iceAcceleration = 5 * moveSpeed;
 
@@ -109,11 +120,20 @@ public class TurtleController : MonoBehaviour
                 dead = true;
                 StartCoroutine(turtleDeath());
             }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                StartCoroutine(Dash());
+            }
         }
     }
 
     void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
         // Adjust gravity scale: double when falling, normal when rising or grounded
         if (rb.linearVelocity.y < 0)
         {
@@ -195,7 +215,26 @@ public class TurtleController : MonoBehaviour
         // Disable camera and pan back to start
         // Get rid of turtle and replace it with shell object
     }
-
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        Vector2 dashingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (dashingDirection == Vector2.zero)
+        {
+            dashingDirection = new Vector2(-transform.localScale.x, 0);
+        }
+        rb.gravityScale = 0f;
+        rb.linearVelocity = dashingDirection.normalized * dashingPower;
+        
+        yield return new WaitForSeconds(dashingTime);
+        
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
     public void ResetLifetime(float newLifetime)
     {
         lifetime = newLifetime;
