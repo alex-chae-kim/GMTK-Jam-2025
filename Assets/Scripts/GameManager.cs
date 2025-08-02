@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         // instantiate the turtle and camera at the specified spawn points and get references to their components
         Debug.Log("instantiateTurtle called");
+        /*
         if (moveSpeed > 4f)
         {
             turtleToSpawn = turtleWalking;  // if the move speed is greater than 4, use the walking turtle prefab
@@ -65,6 +66,8 @@ public class GameManager : MonoBehaviour
         {
             turtleToSpawn = turtleCrawling; // if the move speed is less than 4, use the crawling turtle prefab
         }
+        */
+        turtleToSpawn = turtleCrawling;
         GameObject turtle = Instantiate(turtleToSpawn, turtleSpawnPoint.position, Quaternion.identity);
         GameObject cameraObject = Instantiate(cinemachineCameraPrefab.gameObject, camSpawnPoint.position, Quaternion.identity);
         Turtle_Pickup turtlePickup = turtle.GetComponent<Turtle_Pickup>();

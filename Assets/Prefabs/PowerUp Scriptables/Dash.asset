@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dash
   description: Turtle go yippee!
-  image: {fileID: 1592678549170929119, guid: 1de793d266a94284dbacf375c3d93c55, type: 3}
-  count: 0
+  image: {fileID: 3306060472776958411, guid: c66483a9f6f3e0942a1c567de2c434c4, type: 3}
+  count: 2
   speedBuff: 0
   jumpBuff: 0
   lifeBuff: 0

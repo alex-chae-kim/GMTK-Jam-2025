@@ -1321,7 +1321,7 @@ PrefabInstance:
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1508400062}
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: maxLevel
       value: 1
@@ -1519,6 +1519,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2078871769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1508400062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5101281099960461992, guid: df031b487fb1759488adfabe6d9a0a32, type: 3}
+  m_PrefabInstance: {fileID: 195402429775328835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1657735619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 452356386723805529, guid: e446b4b6c86e4314395f977e3159e944, type: 3}
