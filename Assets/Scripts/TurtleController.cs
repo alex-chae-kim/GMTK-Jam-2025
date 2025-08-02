@@ -56,6 +56,7 @@ public class TurtleController : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        animator.SetBool("dead", false);
 
         if (healthBar != null)
         {
@@ -66,6 +67,11 @@ public class TurtleController : MonoBehaviour
 
     void Update()
     {
+        lifetime -= Time.deltaTime;
+        if (healthBar != null)
+        {
+            healthBar.value = Mathf.Clamp(lifetime, 0, healthBar.maxValue);
+        }
         if (isDashing)
         {
             return;
@@ -113,11 +119,7 @@ public class TurtleController : MonoBehaviour
             {
                 animator.SetBool("grounded", false);
             }
-            lifetime -= Time.deltaTime;
-            if (healthBar != null)
-{
-    healthBar.value = Mathf.Clamp(lifetime, 0, healthBar.maxValue);
-}
+            
 
             if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
             {
@@ -206,7 +208,7 @@ public class TurtleController : MonoBehaviour
         Destroy(boxCollider); // Remove box collider
         Destroy(polygonCollider); // Remove polygon collider
         // Play death animation
-        animator.SetTrigger("die");
+        animator.SetBool("dead", true);
         yield return new WaitForSeconds(2f);
         if (left)
         {
@@ -232,7 +234,7 @@ public class TurtleController : MonoBehaviour
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
-        Vector2 dashingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 dashingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         if (dashingDirection == Vector2.zero)
         {
             dashingDirection = new Vector2(-transform.localScale.x, 0);
