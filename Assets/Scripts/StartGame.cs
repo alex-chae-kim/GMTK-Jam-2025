@@ -18,7 +18,7 @@ public class StartGameManager : MonoBehaviour
     public float fadeDuration = 1f;
     public float startMenuDisableDelay = 2f;
 
-    private bool isFalling = false;
+    public bool isFalling = false;
 
     public void Start(){
         turtle1Animator.SetTrigger("walk");
@@ -64,6 +64,7 @@ public class StartGameManager : MonoBehaviour
     {
         yield return StartCoroutine(FadeCanvas(0f, 2f));
         Destroy(turtle);
+        startMenu.SetActive(false);
         yield return StartCoroutine(FadeCanvas(2f, 0f));
         healthBar.SetActive(true);
         gameManager.initiateNextTurtleLife();

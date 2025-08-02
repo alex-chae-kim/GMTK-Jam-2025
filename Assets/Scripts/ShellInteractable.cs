@@ -3,6 +3,10 @@ using UnityEngine;
 public class ShellInteractable : MonoBehaviour
 {
     public float interactionRange = 2.5f;
+    public GameObject outline;
+    public Texture2D pickaxeCursor;
+    public Vector2 cursorHotspot = Vector2.zero;
+
     private SpriteRenderer spriteRenderer;
     private GameObject player;
     private Color originalColor;
@@ -29,28 +33,41 @@ public class ShellInteractable : MonoBehaviour
             return;
         }
 
-
         float dist = Vector2.Distance(player.transform.position, transform.position);
         if (dist <= interactionRange)
         {
-            spriteRenderer.color = new Color(0.6f, 0f, 0f); // Deep red
+            spriteRenderer.color = new Color(0.6f, 0f, 0f);
             isHovered = true;
 
-            if (Input.GetMouseButtonDown(0)) // Left click
+            outline.SetActive(true);
+
+            if (pickaxeCursor != null)
+            {
+                Cursor.SetCursor(pickaxeCursor, cursorHotspot, CursorMode.Auto);
+            }
+
+            if (Input.GetMouseButtonDown(0))
             {
                 Destroy(gameObject);
             }
         }
         else
         {
-            spriteRenderer.color = originalColor;
-            isHovered = false;
+            ResetVisuals();
         }
     }
 
     void OnMouseExit()
     {
+        ResetVisuals();
+    }
+
+    void ResetVisuals()
+    {
         spriteRenderer.color = originalColor;
         isHovered = false;
+        outline.SetActive(false);
+
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }
