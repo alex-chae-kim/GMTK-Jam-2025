@@ -1277,9 +1277,17 @@ PrefabInstance:
       propertyPath: 'powerUps.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 9cb9fef73afcd054380391b31441f56f, type: 2}
+    - target: {fileID: 4187186993454762102, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7329786218506178193, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_Name
       value: Game UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360862305304932229, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8528656234787573437, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1499,6 +1507,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7044017059945149528, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
+      propertyPath: specialAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 027b9bb8f217b564494bdcd4533a22c6, type: 2}
     - target: {fileID: 8904716019861376883, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
       propertyPath: m_Name
       value: Pickup (1)
@@ -2186,6 +2198,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7044017059945149528, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
+      propertyPath: specialAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: b9b2e8ea548c10d4f8d8e5909bff64be, type: 2}
     - target: {fileID: 8904716019861376883, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
       propertyPath: m_Name
       value: Pickup
