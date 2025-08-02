@@ -33,6 +33,7 @@ public class TurtleController : MonoBehaviour
     public float lifetime;
     public Slider healthBar;
     public GameObject shellPrefab;
+    public GameObject shellPrefabFlipped;
     public GameObject camera;
     public GameManager gameManager;
     public SpriteRenderer spriteRenderer;
@@ -45,6 +46,7 @@ public class TurtleController : MonoBehaviour
     private BoxCollider2D boxCollider;
     private PolygonCollider2D polygonCollider;
     private bool dead = false;
+    private bool left = true;
 
     void Awake()
     {
@@ -78,11 +80,13 @@ public class TurtleController : MonoBehaviour
             {
                 animator.SetBool("walking", true);
                 transform.localScale = new Vector3(-1, 1, 1); // Facing right
+                left = false;
             }
             else if (moveInput < 0)
             {
                 animator.SetBool("walking", true);
                 transform.localScale = new Vector3(1, 1, 1); // Facing left
+                left = true;
             }
             else
             {
@@ -202,8 +206,16 @@ public class TurtleController : MonoBehaviour
         Destroy(boxCollider); // Remove box collider
         Destroy(polygonCollider); // Remove polygon collider
         // Play death animation
+        animator.SetTrigger("die");
         yield return new WaitForSeconds(2f);
-        GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
+        if (left)
+        {
+            GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            GameObject shell = Instantiate(shellPrefabFlipped, transform.position, Quaternion.identity);
+        }
         if (once)
         {
             once = false;

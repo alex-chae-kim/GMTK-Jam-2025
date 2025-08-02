@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public int currentLevel = 0;
     public Slider healthBar;
-    public GameObject turtlePrefab;
+    public GameObject turtleCrawling;
+    public GameObject turtleWalking;
     public GameObject cinemachineCameraPrefab;
     public GameObject powerUpUIPrefab;
     public PowerUpUI powerUpUI;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     private float runOutDistance = 4f; // distance in # of tiles the turtle runs out of cave on its own
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private GameObject turtleToSpawn;
     void Start()
     {
         
@@ -54,7 +56,15 @@ public class GameManager : MonoBehaviour
     {
         // instantiate the turtle and camera at the specified spawn points and get references to their components
         Debug.Log("instantiateTurtle called");
-        GameObject turtle = Instantiate(turtlePrefab, turtleSpawnPoint.position, Quaternion.identity);
+        if (moveSpeed > 4f)
+        {
+            turtleToSpawn = turtleWalking;  // if the move speed is greater than 4, use the walking turtle prefab
+        } 
+        else
+        {
+            turtleToSpawn = turtleCrawling; // if the move speed is less than 4, use the crawling turtle prefab
+        }
+        GameObject turtle = Instantiate(turtleToSpawn, turtleSpawnPoint.position, Quaternion.identity);
         GameObject cameraObject = Instantiate(cinemachineCameraPrefab.gameObject, camSpawnPoint.position, Quaternion.identity);
         Turtle_Pickup turtlePickup = turtle.GetComponent<Turtle_Pickup>();
         TurtleController turtleController = turtle.GetComponent<TurtleController>();
@@ -105,7 +115,6 @@ public class GameManager : MonoBehaviour
         float time = runOutDistance / moveSpeed;
         bool breaked = false;
         turtle.transform.localScale = new Vector3(-1, 1, 1); // Facing right
-        anim.SetTrigger("forceRun"); // Set running animation
         while (time > 0)
         {
             float currentVelX = moveSpeed;
