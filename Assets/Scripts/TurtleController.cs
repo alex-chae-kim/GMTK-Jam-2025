@@ -42,7 +42,7 @@ public class TurtleController : MonoBehaviour
     public GameObject cooldownUI;
 
     public Rigidbody2D rb;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool wasFalling;
     public float moveInput;
     private BoxCollider2D boxCollider;
