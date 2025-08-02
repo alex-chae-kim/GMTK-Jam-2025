@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Linq;
 
 
 
@@ -13,7 +14,7 @@ public class PowerUpUI : MonoBehaviour
     public GameObject player;
     PowerUp[] currentPowers;
 
-    
+    [SerializeField] int maxLevel = 1;
     public bool special = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,8 +24,10 @@ public class PowerUpUI : MonoBehaviour
         //description.GetComponent<TextMeshProUGUI>().text = "pridesogged";
         //GameObject description2 = cards[1].gameObject.transform.GetChild(2).gameObject;
         //description2.GetComponent<TextMeshProUGUI>().text = powerUps[0].description;
-
-        //player = GameObject.FindWithTag("Player");
+        
+        player = GameObject.FindWithTag("Player");
+        
+       
         
 
     }
@@ -38,6 +41,15 @@ public class PowerUpUI : MonoBehaviour
     private void OnEnable()
     {
         gameManager.pauseGame();
+        if(gameManager.numLives == 1)
+        {
+            for (int i = 0; i < powerUps.Length; i++)
+            {
+                powerUps[i].count = 0;
+
+            }
+        }
+        
         if(!special)
         {
             generateCards();
@@ -57,17 +69,20 @@ public class PowerUpUI : MonoBehaviour
             print(chosenPower);
             currentPowers[i] = chosenPower;
 
-            GameObject name = cards[i].gameObject.transform.GetChild(3).gameObject;
+            GameObject name = cards[i].gameObject.transform.GetChild(1).gameObject;
             name.GetComponent<TextMeshProUGUI>().text = chosenPower.name;
 
-            GameObject description = cards[i].gameObject.transform.GetChild(2).gameObject;
-            description.GetComponent<TextMeshProUGUI>().text = chosenPower.description;
+            
+            
 
-            GameObject image = cards[i].gameObject.transform.GetChild(4).gameObject;
-            image.GetComponent<Image>().sprite = chosenPower.image;
-
-            GameObject button = cards[i].gameObject.transform.GetChild(1).gameObject;
-            button.GetComponentInChildren<TextMeshProUGUI>().text = chosenPower.name;
+            GameObject button = cards[i].gameObject.transform.GetChild(0).gameObject;
+            if (chosenPower.count >= maxLevel)
+            {
+                print("Max Level:" + maxLevel);
+                print(chosenPower.count >= maxLevel);
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Maxed";
+                button.GetComponent<Button>().enabled = false;
+            }
         }
     }
 
@@ -78,17 +93,17 @@ public class PowerUpUI : MonoBehaviour
         cards[2].SetActive(false);
         currentPowers[1] = specialPower;
 
-        GameObject name = cards[1].gameObject.transform.GetChild(3).gameObject;
+        GameObject name = cards[1].gameObject.transform.GetChild(1).gameObject;
         name.GetComponent<TextMeshProUGUI>().text = specialPower.name;
 
-        GameObject description = cards[1].gameObject.transform.GetChild(2).gameObject;
-        description.GetComponent<TextMeshProUGUI>().text = specialPower.description;
+        
 
-        GameObject image = cards[1].gameObject.transform.GetChild(4).gameObject;
-        image.GetComponent<Image>().sprite = specialPower.image;
+        GameObject image = cards[1].gameObject.transform.GetChild(2).gameObject;
+        //image.GetComponent<Image>().sprite = specialPower.image;
 
-        GameObject button = cards[1].gameObject.transform.GetChild(1).gameObject;
-        button.GetComponentInChildren<TextMeshProUGUI>().text = specialPower.name;
+        GameObject button = cards[1].gameObject.transform.GetChild(0).gameObject;
+        //button.GetComponentInChildren<TextMeshProUGUI>().text = specialPower.name;
+
 
         if(specialPower.special == "DoubleJump")
         {
@@ -117,6 +132,7 @@ public class PowerUpUI : MonoBehaviour
         gameManager.turtleHealth += currentPowers[index].lifeBuff;
         gameManager.moveSpeed += currentPowers[index].speedBuff;
 
+        currentPowers[index].count++;
         gameManager.resumeGame();
         this.gameObject.SetActive(false);
         special = false;

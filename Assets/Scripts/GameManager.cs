@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject cinemachineCameraPrefab;
     public GameObject powerUpUIPrefab;
     public PowerUpUI powerUpUI;
+    public int numLives = 0;
 
     [SerializeField]
     public LevelSpawnPoints[] levelSpawnPoints;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         // get the spawn points for the current level and starts the turtle instantiation coroutine
         Transform turtleSpawn = levelSpawnPoints[currentLevel].turtleSpawnPoint;
         Transform camSpawn = levelSpawnPoints[currentLevel].camSpawnPoint;
+        numLives++;
         StartCoroutine(instantiateTurtle(turtleSpawn, camSpawn));
     }
     public IEnumerator instantiateTurtle(Transform turtleSpawnPoint, Transform camSpawnPoint)

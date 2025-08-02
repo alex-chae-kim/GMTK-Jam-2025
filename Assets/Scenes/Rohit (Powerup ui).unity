@@ -760,6 +760,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8360862305304932229, guid: c20017684971f6545be4018df2485f38, type: 3}
   m_PrefabInstance: {fileID: 859814042}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &68263610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
+  m_PrefabInstance: {fileID: 859814042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68263608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac907aa297b2434ba7e0690764cf04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &148167688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8485310463814886076, guid: 34b0ccd22d8c1e34fa806dac92ebbd70, type: 3}
+  m_PrefabInstance: {fileID: 1251122339771159315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2770c59f61098af4a8d11a8d73783fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &276533558
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +907,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &439883017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1274530453303726908, guid: 53b7c36680ade6143aa6cd43936f7d12, type: 3}
+  m_PrefabInstance: {fileID: 717018634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e948788024c324bb8617f3462a2b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &502867731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,6 +1298,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2291407956749590502, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: maxLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: gameManager
       value: 
@@ -1280,6 +1321,10 @@ PrefabInstance:
     - target: {fileID: 4187186993454762102, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554240262377449742, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7329786218506178193, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: m_Name
@@ -1918,6 +1963,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4f901ae2832e446903d40cfe7911ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2027766893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1377013518027975405, guid: 246095525a20c464e8a14869575cfc7d, type: 3}
+  m_PrefabInstance: {fileID: 3403501404677117137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb816e3eda18ea741b21fa069ff51e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2078871768
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2096,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: powerUpUI
+      value: 
+      objectReference: {fileID: 68263610}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: powerUpUIPrefab
+      value: 
+      objectReference: {fileID: 68263608}
     - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
       propertyPath: levelSpawnPoints.Array.data[0].camSpawnPoint
       value: 
@@ -2296,6 +2360,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7293352979295827026, guid: 439930c11a3894f49a2db2f4cff5a1f9, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 439883017}
+    - target: {fileID: 7293352979295827026, guid: 439930c11a3894f49a2db2f4cff5a1f9, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 148167688}
+    - target: {fileID: 7293352979295827026, guid: 439930c11a3894f49a2db2f4cff5a1f9, type: 3}
+      propertyPath: transitionManager
+      value: 
+      objectReference: {fileID: 2027766893}
     - target: {fileID: 8973517915706837057, guid: 439930c11a3894f49a2db2f4cff5a1f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
