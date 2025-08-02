@@ -14,12 +14,15 @@ public class GameManager : MonoBehaviour
     public GameObject powerUpUIPrefab;
     public PowerUpUI powerUpUI;
     public Image fillImage;
+    public GameObject caveEntranceIce;
+    public GameObject caveEntranceMagma;
     public int numLives = 0;
-
-    public int level;
 
     [SerializeField]
     public LevelSpawnPoints[] levelSpawnPoints;
+    public float fadeDuration = 1f;
+    public float startMenuDisableDelay = 2f;
+    public CanvasGroup fadeCanvas;
 
     public float moveSpeed = 2f;
     public float jumpForce = 5f;
@@ -151,11 +154,36 @@ public class GameManager : MonoBehaviour
     }
 
     public void nextLevel(){
-        level++;
-        if(level == 2){
+        currentLevel++;
+        StartCoroutine(LoadNextLevel());
+    }
+
+    IEnumerator LoadNextLevel()
+    {
+        yield return StartCoroutine(FadeCanvas(0f, 2f));
+        if(currentLevel == 1){
             fillImage.color = new Color(128f, 255f, 253f, 1f);
-        }else if(level == 3){
+            caveEntranceIce.SetActive(true);
+        }else if(currentLevel == 2){
             fillImage.color = new Color(252f, 3f, 3f, 1f);
+            caveEntranceMagma.SetActive(true);
         }
+        yield return StartCoroutine(FadeCanvas(2f, 0f));
+        initiateNextTurtleLife();
+        Debug.Log("Game Started!");
+    }
+
+    IEnumerator FadeCanvas(float from, float to)
+    {
+        float time = 0;
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            float alpha = Mathf.Lerp(from, to, time / fadeDuration);
+            fadeCanvas.alpha = alpha;
+            yield return null;
+        }
+        fadeCanvas.alpha = to;
+        yield break;
     }
 }
