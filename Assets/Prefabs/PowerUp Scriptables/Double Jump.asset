@@ -20,3 +20,4 @@ MonoBehaviour:
   jumpBuff: 0
   lifeBuff: 0
   special: DoubleJump
+  color: {r: 0.12677999, g: 0.7037015, b: 0.7264151, a: 1}
