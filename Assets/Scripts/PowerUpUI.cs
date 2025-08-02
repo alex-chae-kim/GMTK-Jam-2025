@@ -13,6 +13,9 @@ public class PowerUpUI : MonoBehaviour
     public GameObject player;
     PowerUp[] currentPowers;
 
+    
+    public bool special = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,18 +37,28 @@ public class PowerUpUI : MonoBehaviour
 
     private void OnEnable()
     {
-        currentPowers = new PowerUp[cards.Length];
-        for (int i = 0; i < cards.Length; i++)
+        if(!special)
         {
-
-            int rand = Random.Range(0, powerUps.Length);
-            PowerUp chosenPower = powerUps[rand];
+            generateCards();
+        }
+        
+    }
+    private void generateCards()
+    {
+        
+        
+        currentPowers = new PowerUp[cards.Length];
+        for (int i = 0; i < powerUps.Length; i++)
+        {
+            cards[i].SetActive(true);
+            
+            PowerUp chosenPower = powerUps[i];
             print(chosenPower);
             currentPowers[i] = chosenPower;
 
             GameObject name = cards[i].gameObject.transform.GetChild(3).gameObject;
             name.GetComponent<TextMeshProUGUI>().text = chosenPower.name;
-            
+
             GameObject description = cards[i].gameObject.transform.GetChild(2).gameObject;
             description.GetComponent<TextMeshProUGUI>().text = chosenPower.description;
 
@@ -54,13 +67,35 @@ public class PowerUpUI : MonoBehaviour
 
             GameObject button = cards[i].gameObject.transform.GetChild(1).gameObject;
             button.GetComponentInChildren<TextMeshProUGUI>().text = chosenPower.name;
-
-
         }
     }
-    private void generateCards()
+
+    public void generateSpecial(PowerUp specialPower)
     {
-        
+        this.gameObject.SetActive(true);
+        cards[0].SetActive(false);
+        cards[2].SetActive(false);
+        currentPowers[1] = specialPower;
+
+        GameObject name = cards[1].gameObject.transform.GetChild(3).gameObject;
+        name.GetComponent<TextMeshProUGUI>().text = specialPower.name;
+
+        GameObject description = cards[1].gameObject.transform.GetChild(2).gameObject;
+        description.GetComponent<TextMeshProUGUI>().text = specialPower.description;
+
+        GameObject image = cards[1].gameObject.transform.GetChild(4).gameObject;
+        image.GetComponent<Image>().sprite = specialPower.image;
+
+        GameObject button = cards[1].gameObject.transform.GetChild(1).gameObject;
+        button.GetComponentInChildren<TextMeshProUGUI>().text = specialPower.name;
+
+        if(specialPower.special == "DoubleJump")
+        {
+           TurtleController playerController = player.GetComponent<TurtleController>();
+            playerController.maxJumps++;
+            playerController.numJumpsRemaining = playerController.maxJumps;
+        }
+
     }
 
     public void selectPower(int index)
@@ -77,6 +112,8 @@ public class PowerUpUI : MonoBehaviour
         gameManager.turtleHealth += currentPowers[index].lifeBuff;
         gameManager.moveSpeed += currentPowers[index].speedBuff;
 
+        
         this.gameObject.SetActive(false);
+        special = false;
     }
 }
