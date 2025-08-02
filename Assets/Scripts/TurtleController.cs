@@ -56,6 +56,7 @@ public class TurtleController : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        animator.SetBool("dead", false);
 
         if (healthBar != null)
         {
@@ -207,7 +208,7 @@ public class TurtleController : MonoBehaviour
         Destroy(boxCollider); // Remove box collider
         Destroy(polygonCollider); // Remove polygon collider
         // Play death animation
-        animator.SetTrigger("die");
+        animator.SetBool("dead", true);
         yield return new WaitForSeconds(2f);
         if (left)
         {

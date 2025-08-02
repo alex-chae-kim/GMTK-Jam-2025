@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         turtleController.camera = cameraObject;
         turtleController.gameManager = this;
         turtlePickup.powerUpUI = powerUpUIPrefab;
-        turtleController.healthBar = healthBar;
+        
         // set the player reference in the powerUpUI script
         powerUpUI.setPlayer(turtle);
         // wait for a short time to allow the camera to focus on the turtle
@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
 
         
         powerUpUIPrefab.SetActive(true);
+        turtleController.healthBar = healthBar;
         if (healthBar != null) // fill health bar bc it looks nice
         {
             healthBar.maxValue = turtleHealth;

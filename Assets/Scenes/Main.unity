@@ -45754,6 +45754,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 195402429775328836}
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
+      propertyPath: maxLevel
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1950046976}
