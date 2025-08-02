@@ -32,6 +32,17 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void pauseGame()
+    {
+        Time.timeScale = 0f; // pause the game
+    }
+
+    public void resumeGame()
+    {
+        Time.timeScale = 1f; // resume the game
+    }
+
     public void initiateNextTurtleLife()
     {
         // get the spawn points for the current level and starts the turtle instantiation coroutine
@@ -48,27 +59,41 @@ public class GameManager : MonoBehaviour
         Turtle_Pickup turtlePickup = turtle.GetComponent<Turtle_Pickup>();
         TurtleController turtleController = turtle.GetComponent<TurtleController>();
         CinemachineCamera camera = cameraObject.GetComponent<CinemachineCamera>();
+        Animator anim = turtle.GetComponent<Animator>();
 
         // set the camera's target to the turtle and disable player controls for a short time
         camera.Target.TrackingTarget = turtle.transform;
         turtleController.controlsEnabled = false; //disable player controls
 
+        // set the turtle's camera and game manager references
+        turtleController.camera = cameraObject;
+        turtleController.gameManager = this;
+        turtlePickup.powerUpUI = powerUpUIPrefab;
+        turtleController.healthBar = healthBar;
+        powerUpUI.player = turtle;
         // wait for a short time to allow the camera to focus on the turtle
         yield return new WaitForSeconds(2f);
 
         // set the player reference in the powerUpUI script
-        powerUpUI.player = turtle; 
+        
+        powerUpUIPrefab.SetActive(true);
+        if (healthBar != null) // fill health bar bc it looks nice
+        {
+            healthBar.maxValue = turtleHealth;
+            healthBar.value = turtleHealth;
+        }
+        while (powerUpUIPrefab.activeSelf )
+        {
+            yield return null; // wait until the powerUpUI is turned off
+        }
 
         // set the turtle's properties
         turtleController.moveSpeed = moveSpeed;
         turtleController.jumpForce = jumpForce;
         turtleController.lifetime = turtleHealth;
-        turtleController.camera = cameraObject;
-        turtleController.gameManager = this;
-        turtlePickup.powerUpUI = powerUpUIPrefab;
-        turtleController.healthBar = healthBar;
+        
 
-        if (healthBar != null)
+        if (healthBar != null) // fill health bar again bc it might have been updated
         {
             healthBar.maxValue = turtleHealth;
             healthBar.value = turtleHealth;
@@ -79,6 +104,8 @@ public class GameManager : MonoBehaviour
         // the turtle's run out by pressing a movement key
         float time = runOutDistance / moveSpeed;
         bool breaked = false;
+        turtle.transform.localScale = new Vector3(-1, 1, 1); // Facing right
+        anim.SetTrigger("forceRun"); // Set running animation
         while (time > 0)
         {
             float currentVelX = moveSpeed;

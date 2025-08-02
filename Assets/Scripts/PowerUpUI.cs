@@ -24,7 +24,7 @@ public class PowerUpUI : MonoBehaviour
         //GameObject description2 = cards[1].gameObject.transform.GetChild(2).gameObject;
         //description2.GetComponent<TextMeshProUGUI>().text = powerUps[0].description;
 
-        player = GameObject.FindWithTag("Player");
+        //player = GameObject.FindWithTag("Player");
         
 
     }
@@ -37,6 +37,7 @@ public class PowerUpUI : MonoBehaviour
 
     private void OnEnable()
     {
+        gameManager.pauseGame();
         if(!special)
         {
             generateCards();
@@ -89,7 +90,12 @@ public class PowerUpUI : MonoBehaviour
         GameObject button = cards[1].gameObject.transform.GetChild(1).gameObject;
         button.GetComponentInChildren<TextMeshProUGUI>().text = specialPower.name;
 
-        
+        if(specialPower.special == "DoubleJump")
+        {
+           TurtleController playerController = player.GetComponent<TurtleController>();
+            playerController.maxJumps++;
+            playerController.numJumpsRemaining = playerController.maxJumps;
+        }
 
     }
 
@@ -107,7 +113,7 @@ public class PowerUpUI : MonoBehaviour
         gameManager.turtleHealth += currentPowers[index].lifeBuff;
         gameManager.moveSpeed += currentPowers[index].speedBuff;
 
-        
+        gameManager.resumeGame();
         this.gameObject.SetActive(false);
         special = false;
     }
