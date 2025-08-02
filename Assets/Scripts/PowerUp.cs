@@ -14,4 +14,5 @@ public class PowerUp : ScriptableObject
     public float jumpBuff;
     public float lifeBuff;
     public string special;
+    public Color color;
 }

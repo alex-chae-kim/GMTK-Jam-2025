@@ -13,7 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject cinemachineCameraPrefab;
     public GameObject powerUpUIPrefab;
     public PowerUpUI powerUpUI;
+    public Image fillImage;
     public int numLives = 0;
+
+    public int level;
 
     [SerializeField]
     public LevelSpawnPoints[] levelSpawnPoints;
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
     private GameObject turtleToSpawn;
     void Start()
     {
-        
+        fillImage = healthBar.fillRect.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -145,8 +148,14 @@ public class GameManager : MonoBehaviour
             turtleController.rb.linearVelocity = new Vector2(0f, 0f);
             turtleController.controlsEnabled = true;
         }
-        
-        
+    }
 
+    public void nextLevel(){
+        level++;
+        if(level == 2){
+            fillImage.color = new Color(128f, 255f, 253f, 1f);
+        }else if(level == 3){
+            fillImage.color = new Color(252f, 3f, 3f, 1f);
+        }
     }
 }

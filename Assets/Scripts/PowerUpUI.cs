@@ -107,14 +107,14 @@ public class PowerUpUI : MonoBehaviour
 
         GameObject name = cards[1].gameObject.transform.GetChild(1).gameObject;
         name.GetComponent<TextMeshProUGUI>().text = specialPower.name;
-        //color
+        name.GetComponent<TextMeshProUGUI>().color = specialPower.color;
 
         GameObject image = cards[1].gameObject.transform.GetChild(2).gameObject;
-        //image.GetComponent<Image>().sprite = specialPower.image;
+        image.GetComponent<Image>().sprite = specialPower.image;
 
         GameObject button = cards[1].gameObject.transform.GetChild(0).gameObject;
         button.GetComponentInChildren<TextMeshProUGUI>().text = "Unlock";
-        //color
+        button.GetComponent<Image>().color = specialPower.color;
 
 
         if(specialPower.special == "DoubleJump")
