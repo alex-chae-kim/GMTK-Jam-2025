@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         // get the spawn points for the current level and starts the turtle instantiation coroutine
         Transform turtleSpawn = levelSpawnPoints[currentLevel].turtleSpawnPoint;
         Transform camSpawn = levelSpawnPoints[currentLevel].camSpawnPoint;
-        numLives++;
         StartCoroutine(instantiateTurtle(turtleSpawn, camSpawn));
     }
     public IEnumerator instantiateTurtle(Transform turtleSpawnPoint, Transform camSpawnPoint)
@@ -82,11 +81,11 @@ public class GameManager : MonoBehaviour
         turtleController.gameManager = this;
         turtlePickup.powerUpUI = powerUpUIPrefab;
         turtleController.healthBar = healthBar;
-        powerUpUI.player = turtle;
+        // set the player reference in the powerUpUI script
+        powerUpUI.setPlayer(turtle);
         // wait for a short time to allow the camera to focus on the turtle
         yield return new WaitForSeconds(2f);
 
-        // set the player reference in the powerUpUI script
         
         powerUpUIPrefab.SetActive(true);
         if (healthBar != null) // fill health bar bc it looks nice
@@ -110,6 +109,9 @@ public class GameManager : MonoBehaviour
             healthBar.maxValue = turtleHealth;
             healthBar.value = turtleHealth;
         }
+
+        // numLives must be increased AFTER the ui is turned on and off so the powerups reset to 0 count if the turtle was on its 0ith life
+        numLives++;
 
 
         // make the turtle run out of the cave a set distance (this is SUPER jank but it works). It is intended behavior that the player can prematurely end

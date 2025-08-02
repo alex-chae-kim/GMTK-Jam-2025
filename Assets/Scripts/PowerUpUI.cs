@@ -26,11 +26,7 @@ public class PowerUpUI : MonoBehaviour
         //GameObject description2 = cards[1].gameObject.transform.GetChild(2).gameObject;
         //description2.GetComponent<TextMeshProUGUI>().text = powerUps[0].description;
         
-        player = GameObject.FindWithTag("Player");
-        
-       
-        
-
+        //player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -39,12 +35,19 @@ public class PowerUpUI : MonoBehaviour
         
     }
 
+    public void setPlayer(GameObject playerObject)
+    {
+        player = playerObject;
+    }
+
     private void OnEnable()
     {
+        //player = GameObject.FindWithTag("Player");
         gameManager.pauseGame();
         print("Current Life: " + gameManager.numLives);
         if (gameManager.numLives == 0)
         {
+            print("Setting powerup counts to 0");
             maxLevel = 3;
             for (int i = 0; i < powerUps.Length; i++)
             {
