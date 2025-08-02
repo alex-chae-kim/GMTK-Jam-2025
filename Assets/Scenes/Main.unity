@@ -9144,6 +9144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: test turtle
       objectReference: {fileID: 0}
+    - target: {fileID: 5101281099960461992, guid: df031b487fb1759488adfabe6d9a0a32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5352044270460438944, guid: df031b487fb1759488adfabe6d9a0a32, type: 3}
       propertyPath: powerUpUI
       value: 
@@ -9198,6 +9202,14 @@ PrefabInstance:
       propertyPath: powerUpUI
       value: 
       objectReference: {fileID: 905200129}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: turtleWalking
+      value: 
+      objectReference: {fileID: 3366690489441453339, guid: d708de733fb193149940bd54162ff023, type: 3}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: turtleCrawling
+      value: 
+      objectReference: {fileID: 5101281099960461992, guid: df031b487fb1759488adfabe6d9a0a32, type: 3}
     - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
       propertyPath: powerUpUIPrefab
       value: 
