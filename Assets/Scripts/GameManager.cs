@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
         float time = runOutDistance / moveSpeed;
         bool breaked = false;
         turtle.transform.localScale = new Vector3(-1, 1, 1); // Facing right
+        anim.SetBool("forceWalk", true);
         while (time > 0)
         {
             float currentVelX = moveSpeed;
@@ -127,6 +128,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
                 turtleController.controlsEnabled = true; // enable player controls
+                anim.SetBool("forceWalk", false);
                 turtleController.moveInput = Input.GetAxisRaw("Horizontal");
                 breaked = true;
                 break;
@@ -135,6 +137,7 @@ public class GameManager : MonoBehaviour
         }
         if (!breaked)
         {
+            anim.SetBool("forceWalk", false);
             turtleController.rb.linearVelocity = new Vector2(0f, 0f);
             turtleController.controlsEnabled = true;
         }
