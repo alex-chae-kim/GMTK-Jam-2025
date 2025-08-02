@@ -17,6 +17,10 @@ public class TurtleController : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask whatIsGround;
     public LayerMask iceLayer;
+
+    //Variables Altered by Powerups
+    public int maxJumps = 1;
+    public int numJumpsRemaining;
     
 
     //other
@@ -77,7 +81,7 @@ public class TurtleController : MonoBehaviour
             {
                 animator.SetBool("walking", false);
             }
-            if (Input.GetButtonDown("Jump") && isGrounded)
+            if (Input.GetButtonDown("Jump") && numJumpsRemaining>0)
             {
                 Jump();
             }
@@ -90,7 +94,9 @@ public class TurtleController : MonoBehaviour
                     wasFalling = false;
                     animator.SetBool("falling", false);
                     animator.SetTrigger("landed");
+                    
                 }
+                numJumpsRemaining = maxJumps;
             } 
             else
             {
@@ -159,6 +165,7 @@ public class TurtleController : MonoBehaviour
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         animator.SetTrigger("jump");
+        numJumpsRemaining--;
     }
 
     void OnDrawGizmosSelected()

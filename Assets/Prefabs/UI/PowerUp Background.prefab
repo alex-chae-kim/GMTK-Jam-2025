@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac907aa297b2434ba7e0690764cf04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   cards:
   - {fileID: 7227939048504976618}
   - {fileID: 2884094733759558703}
@@ -98,12 +99,9 @@ MonoBehaviour:
   powerUps:
   - {fileID: 11400000, guid: 8a71ace3acbb0a0438271d2a07d9aa9e, type: 2}
   - {fileID: 11400000, guid: 51deb41d60b5abe448332deb081ebb73, type: 2}
-  - {fileID: 11400000, guid: 6189aa0a4ca973e47998ed27775dca4d, type: 2}
-  - {fileID: 11400000, guid: b9b2e8ea548c10d4f8d8e5909bff64be, type: 2}
-  - {fileID: 11400000, guid: 188a3079a4e8f55408e9983c96e0377f, type: 2}
   - {fileID: 11400000, guid: 9cb9fef73afcd054380391b31441f56f, type: 2}
-  - {fileID: 11400000, guid: 027b9bb8f217b564494bdcd4533a22c6, type: 2}
   player: {fileID: 0}
+  special: 0
 --- !u!1001 &399606600162853050
 PrefabInstance:
   m_ObjectHideFlags: 0
