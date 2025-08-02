@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 2.5
-  outlinePrefab: {fileID: 5048104003683050371}
+  outline: {fileID: 5048104003683050371}
   pickaxeCursor: {fileID: 2800000, guid: 5f9e5d2bec6917d468ca7c8efcf89ff8, type: 3}
   cursorHotspot: {x: 0, y: 0}
 --- !u!251 &7100977073558440961

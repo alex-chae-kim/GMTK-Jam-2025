@@ -66,8 +66,7 @@ public class ShellInteractable : MonoBehaviour
     {
         spriteRenderer.color = originalColor;
         isHovered = false;
-
-        outline.setActive(false);
+        outline.SetActive(false);
 
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
