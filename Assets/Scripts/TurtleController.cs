@@ -26,6 +26,7 @@ public class TurtleController : MonoBehaviour
     public int maxJumps = 1;
     public int numJumpsRemaining;
     public bool canDash = false;
+    public bool dashUnlocked = false;
     
 
 
@@ -38,6 +39,7 @@ public class TurtleController : MonoBehaviour
     public GameManager gameManager;
     public SpriteRenderer spriteRenderer;
     public Animator animator;
+    public GameObject cooldownUI;
 
     public Rigidbody2D rb;
     private bool isGrounded;
@@ -63,6 +65,8 @@ public class TurtleController : MonoBehaviour
             healthBar.maxValue = lifetime;
             healthBar.value = lifetime;
         }
+
+        cooldownUI = GameObject.Find("Game UI/CoolDownUI");
     }
 
     void Update()
@@ -246,6 +250,7 @@ public class TurtleController : MonoBehaviour
         
         rb.gravityScale = originalGravity;
         isDashing = false;
+        cooldownUI.GetComponent<CoolDownUI>().startCooldown(dashingCooldown);
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }

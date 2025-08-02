@@ -126,6 +126,7 @@ public class PowerUpUI : MonoBehaviour
         {
             TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.canDash = true;
+            playerController.dashUnlocked = true;
         }
 
     }
