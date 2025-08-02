@@ -89,7 +89,12 @@ public class PowerUpUI : MonoBehaviour
         GameObject button = cards[1].gameObject.transform.GetChild(1).gameObject;
         button.GetComponentInChildren<TextMeshProUGUI>().text = specialPower.name;
 
-        
+        if(specialPower.special == "DoubleJump")
+        {
+           TurtleController playerController = player.GetComponent<TurtleController>();
+            playerController.maxJumps++;
+            playerController.numJumpsRemaining = playerController.maxJumps;
+        }
 
     }
 
