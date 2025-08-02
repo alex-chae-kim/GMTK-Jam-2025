@@ -188,6 +188,7 @@ public class TurtleController : MonoBehaviour
 
     void Jump()
     {
+        AudioManager.Instance.Play("Jump");
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         animator.SetTrigger("jump");
@@ -225,6 +226,7 @@ public class TurtleController : MonoBehaviour
         if (once)
         {
             once = false;
+            AudioManager.Instance.Play("Death");
             gameManager.initiateNextTurtleLife();
         }
         yield return new WaitForSeconds(2f);
@@ -237,6 +239,7 @@ public class TurtleController : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        AudioManager.Instance.Play("Dash");
         float originalGravity = rb.gravityScale;
         Vector2 dashingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         if (dashingDirection == Vector2.zero)

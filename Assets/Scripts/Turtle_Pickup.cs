@@ -20,7 +20,7 @@ public class Turtle_Pickup : MonoBehaviour
     {
         if(collision.gameObject.tag == "Pickup")
         {
-            
+            AudioManager.Instance.Play("Powerup");
             Destroy(collision.gameObject);
             powerUpUI.SetActive(true);
 
