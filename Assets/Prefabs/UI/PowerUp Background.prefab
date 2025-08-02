@@ -242,6 +242,11 @@ MonoBehaviour:
   eggTilt1: {fileID: 4884191852637904418}
   eggTilt2: {fileID: 3126033331419522727}
   eggTilt3: {fileID: 3201482323534792742}
+  eggImages:
+  - {fileID: 8322040189384066704, guid: b5be87df4cf1c6f4b967e630720079b4, type: 3}
+  - {fileID: 576159883986857488, guid: 84d7e01c9fc8a4649a1f40499dfc4db7, type: 3}
+  - {fileID: 8172420572581201067, guid: 3a00b85ca2507854ea0517c402467586, type: 3}
+  powerUpIcons: []
   maxLevel: 3
   special: 0
 --- !u!1001 &2407988654196123898

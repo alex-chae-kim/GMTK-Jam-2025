@@ -16,6 +16,9 @@ public class PowerUpUI : MonoBehaviour
     public EggTilt eggTilt1;
     public EggTilt eggTilt2;
     public EggTilt eggTilt3;
+    public Sprite[] eggImages;
+
+    public GameObject[] powerUpIcons;
 
     [SerializeField] int maxLevel = 3;
     public bool special = false;
@@ -82,6 +85,7 @@ public class PowerUpUI : MonoBehaviour
             name.GetComponent<TextMeshProUGUI>().text = chosenPower.name;
 
             GameObject image = cards[i].gameObject.transform.GetChild(2).gameObject;
+            image.GetComponent<Image>().sprite = eggImages[i];
             
 
             GameObject button = cards[i].gameObject.transform.GetChild(0).gameObject;
@@ -122,11 +126,19 @@ public class PowerUpUI : MonoBehaviour
            TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.maxJumps++;
             playerController.numJumpsRemaining = playerController.maxJumps;
+            powerUpIcons[1].SetActive(true);
         }else if(specialPower.special == "Dash")
         {
             TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.canDash = true;
             playerController.dashUnlocked = true;
+            powerUpIcons[2].SetActive(true);
+        }else if(specialPower.special == "Pickaxe")
+        {
+            TurtleController playerController = player.GetComponent<TurtleController>();
+            //playerController.canDestroy = true;
+            //playerController.destoryUnlock = true;
+            powerUpIcons[0].SetActive(true);
         }
 
     }

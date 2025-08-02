@@ -12,15 +12,23 @@ public class CoolDownUI : MonoBehaviour
     private float totalCooldown;
 
     [SerializeField] GameObject dashCooldownUI;
+    [SerializeField] Image icon;
+    Color originalIconColor;
+    [SerializeField] Image panel;
     [SerializeField] Image timerPanel;
+    public bool doubleJump;
+    public bool dash;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         onCooldown = false;
         player = GameObject.FindWithTag("Player");
         turtleController = player.GetComponent<TurtleController>();
-        timerPanel = dashCooldownUI.transform.GetChild(1).GetComponent<Image>();
-        dashCooldownUI.SetActive(false);
+        if(dash){
+            timerPanel = dashCooldownUI.transform.GetChild(1).GetComponent<Image>();
+            dashCooldownUI.SetActive(false);
+        }
+        originalIconColor = panel.color;
     }
 
     // Update is called once per frame
@@ -28,11 +36,23 @@ public class CoolDownUI : MonoBehaviour
     {
         if (turtleController.dashUnlocked)
         {
-            dashCooldownUI.SetActive(true);
-            if (onCooldown)
-            {
-                applyCooldown();
+            if(dash){
+                dashCooldownUI.SetActive(true);
+                if (onCooldown)
+                {
+                    applyCooldown();
+                }
             }
+        }
+
+        Debug.Log("Double Jump: " + doubleJump);
+        Debug.Log("TurtleController.isGrounded: " + turtleController.isGrounded);
+        if(!turtleController.isGrounded && doubleJump){
+            icon.color = new Color(0.5f, 0.5f, 0.5f);
+            panel.color = new Color(0.5f, 0.5f, 0.5f);
+        }else{
+            icon.color = new Color(1f, 1f, 1f);
+            panel.color = originalIconColor;
         }
         
     }
@@ -48,6 +68,8 @@ public class CoolDownUI : MonoBehaviour
 
     private void applyCooldown()
     {
+        icon.color = new Color(0.5f, 0.5f, 0.5f);
+        panel.color = new Color(0.5f, 0.5f, 0.5f);
         cooldownTimer -= Time.deltaTime;
         if(cooldownTimer <= 0) 
         {
@@ -58,5 +80,8 @@ public class CoolDownUI : MonoBehaviour
         {
             timerPanel.fillAmount = cooldownTimer / totalCooldown;
         }
+        
+        icon.color = new Color(1f, 1f, 1f);
+        panel.color = originalIconColor;
     }
 }
