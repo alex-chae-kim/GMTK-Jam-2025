@@ -105,9 +105,9 @@ public class TurtleController : MonoBehaviour
                     wasFalling = false;
                     animator.SetBool("falling", false);
                     animator.SetTrigger("landed");
-                    
+                    numJumpsRemaining = maxJumps;
+                    Debug.Log("Landed, resetting jumps to " + numJumpsRemaining);
                 }
-                numJumpsRemaining = maxJumps;
             } 
             else
             {
