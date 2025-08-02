@@ -66,6 +66,11 @@ public class TurtleController : MonoBehaviour
 
     void Update()
     {
+        lifetime -= Time.deltaTime;
+        if (healthBar != null)
+        {
+            healthBar.value = Mathf.Clamp(lifetime, 0, healthBar.maxValue);
+        }
         if (isDashing)
         {
             return;
@@ -105,19 +110,15 @@ public class TurtleController : MonoBehaviour
                     wasFalling = false;
                     animator.SetBool("falling", false);
                     animator.SetTrigger("landed");
-                    
+                    numJumpsRemaining = maxJumps;
+                    Debug.Log("Landed, resetting jumps to " + numJumpsRemaining);
                 }
-                numJumpsRemaining = maxJumps;
             } 
             else
             {
                 animator.SetBool("grounded", false);
             }
-            lifetime -= Time.deltaTime;
-            if (healthBar != null)
-{
-    healthBar.value = Mathf.Clamp(lifetime, 0, healthBar.maxValue);
-}
+            
 
             if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
             {
@@ -232,7 +233,7 @@ public class TurtleController : MonoBehaviour
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
-        Vector2 dashingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 dashingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         if (dashingDirection == Vector2.zero)
         {
             dashingDirection = new Vector2(-transform.localScale.x, 0);
