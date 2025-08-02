@@ -807,6 +807,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7044017059945149528, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
+      propertyPath: specialAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 027b9bb8f217b564494bdcd4533a22c6, type: 2}
     - target: {fileID: 8904716019861376883, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
       propertyPath: m_Name
       value: Pickup (1)
@@ -8363,6 +8367,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7044017059945149528, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
+      propertyPath: specialAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: b9b2e8ea548c10d4f8d8e5909bff64be, type: 2}
     - target: {fileID: 8904716019861376883, guid: 7dfe6cf689cc31c468c503d467a3e693, type: 3}
       propertyPath: m_Name
       value: Pickup

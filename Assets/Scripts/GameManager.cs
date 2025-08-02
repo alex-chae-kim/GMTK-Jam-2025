@@ -32,6 +32,17 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void pauseGame()
+    {
+        Time.timeScale = 0f; // pause the game
+    }
+
+    public void resumeGame()
+    {
+        Time.timeScale = 1f; // resume the game
+    }
+
     public void initiateNextTurtleLife()
     {
         // get the spawn points for the current level and starts the turtle instantiation coroutine
@@ -57,7 +68,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         // set the player reference in the powerUpUI script
-        powerUpUI.player = turtle; 
+        powerUpUI.player = turtle;
+        powerUpUIPrefab.SetActive(true);
+        if (healthBar != null) // fill health bar bc it looks nice
+        {
+            healthBar.maxValue = turtleHealth;
+            healthBar.value = turtleHealth;
+        }
+        while (powerUpUI.gameObject.activeSelf )
+        {
+            yield return null; // wait until the powerUpUI is turned off
+        }
 
         // set the turtle's properties
         turtleController.moveSpeed = moveSpeed;
@@ -68,7 +89,7 @@ public class GameManager : MonoBehaviour
         turtlePickup.powerUpUI = powerUpUIPrefab;
         turtleController.healthBar = healthBar;
 
-        if (healthBar != null)
+        if (healthBar != null) // fill health bar again bc it might have been updated
         {
             healthBar.maxValue = turtleHealth;
             healthBar.value = turtleHealth;
