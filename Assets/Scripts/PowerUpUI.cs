@@ -136,8 +136,8 @@ public class PowerUpUI : MonoBehaviour
         }else if(specialPower.special == "Pickaxe")
         {
             TurtleController playerController = player.GetComponent<TurtleController>();
-            //playerController.canDestroy = true;
-            //playerController.destoryUnlock = true;
+            playerController.canDestroy = true;
+            playerController.destoryUnlock = true;
             powerUpIcons[0].SetActive(true);
         }
 

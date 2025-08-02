@@ -28,7 +28,8 @@ public class TurtleController : MonoBehaviour
     public bool canDash = false;
     public bool dashUnlocked = false;
     
-
+    public bool canDestroy = false;
+    public bool destoryUnlock = false;
 
     //other
     public float lifetime;
