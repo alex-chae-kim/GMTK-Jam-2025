@@ -24,7 +24,7 @@ public class PowerUpUI : MonoBehaviour
         //GameObject description2 = cards[1].gameObject.transform.GetChild(2).gameObject;
         //description2.GetComponent<TextMeshProUGUI>().text = powerUps[0].description;
 
-        player = GameObject.FindWithTag("Player");
+        //player = GameObject.FindWithTag("Player");
         
 
     }

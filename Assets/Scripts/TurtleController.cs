@@ -53,10 +53,6 @@ public class TurtleController : MonoBehaviour
             healthBar.maxValue = lifetime;
             healthBar.value = lifetime;
         }
-        else
-        {
-            Debug.LogError("Health bar is not assigned!");
-        }
     }
 
     void Update()
