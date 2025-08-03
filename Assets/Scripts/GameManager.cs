@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     public GameObject leaderboard;
     public GameObject canvas;
     public bool canDestroy = false;
+    public bool canDash = false;
+    public int maxJumps = 1;
+    public int numJumpsRemaining;
 
     private float runOutDistance = 4f; // distance in # of tiles the turtle runs out of cave on its own
     // Start is called once before the first execution of Update after the MonoBehaviour is created
