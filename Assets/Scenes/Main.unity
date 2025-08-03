@@ -41234,7 +41234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: maxLevel
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3473896505399131210, guid: c20017684971f6545be4018df2485f38, type: 3}
       propertyPath: gameManager
