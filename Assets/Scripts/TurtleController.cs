@@ -233,6 +233,11 @@ public class TurtleController : MonoBehaviour
         {
             once = false;
             AudioManager.Instance.Play("Death");
+            if(gameManager.numLives == 1){
+                AudioManager.Instance.Play("First Death Narration");
+                yield return new WaitForSecondsRealtime(7f);
+                AudioManager.Instance.Play("First Respawn Narration")
+            }
             gameManager.initiateNextTurtleLife();
         }
         yield return new WaitForSeconds(2f);
