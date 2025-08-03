@@ -72,6 +72,8 @@ public class TurtleController : MonoBehaviour
 
     void Update()
     {
+        canDash = gameManager.canDash;
+        maxJumps = gameManager.maxJumps;
         lifetime -= Time.deltaTime;
         if (healthBar != null)
         {
