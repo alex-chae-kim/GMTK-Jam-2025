@@ -143,6 +143,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             Play(randomNarrationSounds[randomNumber].name);
+            alreadyPlayed[randomNumber] = true; // Mark this sound as played
         }
         return true; // Successfully played a random narration sound
     }
