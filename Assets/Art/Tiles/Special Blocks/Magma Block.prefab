@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3657925424421280333}
   - component: {fileID: 4543467039781365369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6715141208003828627}
   - component: {fileID: 7138584263131561080}
   - component: {fileID: 1839350410719822996}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Magma Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 4410182271123875454}
   - component: {fileID: 3774978068810130731}
   - component: {fileID: 1698972328406438222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Damage Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

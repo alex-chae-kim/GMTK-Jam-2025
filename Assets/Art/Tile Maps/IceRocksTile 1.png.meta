@@ -108,115 +108,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IceRocksTile 1_0
+      name: IceRocksTile 1_16
       rect:
         serializedVersion: 2
-        x: 31
-        y: 30
-        width: 98
-        height: 99
+        x: 288
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a3bf88be029e9aa30800000000000000
-      internalID: 4227166052863769402
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IceRocksTile 1_1
-      rect:
-        serializedVersion: 2
-        x: 159
-        y: 31
-        width: 34
-        height: 98
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c716d6e14104cf320800000000000000
-      internalID: 2593017940612571516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IceRocksTile 1_2
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 31
-        width: 34
-        height: 98
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9f53744eed8249930800000000000000
-      internalID: 4148986094492792313
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IceRocksTile 1_3
-      rect:
-        serializedVersion: 2
-        x: 287
-        y: 95
-        width: 34
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b5a73dced35921520800000000000000
-      internalID: 2671361622182951515
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IceRocksTile 1_4
-      rect:
-        serializedVersion: 2
-        x: 287
-        y: 31
-        width: 34
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a62914e264d997680800000000000000
-      internalID: -8756795075695898006
+      spriteID: d44843382a1c8764ab4350e5d27e8c68
+      internalID: 211442268
       vertices: []
       indices: 
       edges: []
@@ -225,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d8bef141a54c51e48a81ea3338926184
     internalID: 0
     vertices: []
     indices: 
@@ -237,9 +162,22 @@ TextureImporter:
     nameFileIdTable:
       IceRocksTile 1_0: 4227166052863769402
       IceRocksTile 1_1: 2593017940612571516
+      IceRocksTile 1_10: -440508839
+      IceRocksTile 1_11: 832635139
+      IceRocksTile 1_12: -1603600077
+      IceRocksTile 1_13: 230438932
+      IceRocksTile 1_14: -1902705826
+      IceRocksTile 1_15: -327083781
+      IceRocksTile 1_16: 211442268
+      IceRocksTile 1_17: -875870201
       IceRocksTile 1_2: 4148986094492792313
       IceRocksTile 1_3: 2671361622182951515
       IceRocksTile 1_4: -8756795075695898006
+      IceRocksTile 1_5: -1794072388
+      IceRocksTile 1_6: 1744687166
+      IceRocksTile 1_7: 2103334809
+      IceRocksTile 1_8: -2131577618
+      IceRocksTile 1_9: -379699502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
