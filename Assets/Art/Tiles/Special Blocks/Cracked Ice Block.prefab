@@ -149,9 +149,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakDelay: 0.1
+  respawnTimer: 5
   shatterEffect: {fileID: 0}
   shatterSound: {fileID: 0}
   audioSource: {fileID: 0}
+  spriteRenderer: {fileID: 1375984601772111388}
+  boxCollider: {fileID: 8561541615545413031}
+  light2D: {fileID: 5254313350697687108}
 --- !u!1 &5254313350697687108
 GameObject:
   m_ObjectHideFlags: 0
