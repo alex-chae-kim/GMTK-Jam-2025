@@ -56,7 +56,7 @@ public class ShellInteractable : MonoBehaviour
 
             if (pickaxeCursor != null)
             {
-                Cursor.SetCursor(pickaxeCursor, cursorHotspot, CursorMode.Auto);
+                Cursor.SetCursor(pickaxeCursor, cursorHotspot, CursorMode.ForceSoftware);
             }
 
             if (Input.GetMouseButtonDown(0))
