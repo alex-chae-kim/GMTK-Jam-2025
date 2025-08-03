@@ -163,12 +163,12 @@ public class GameManager : MonoBehaviour
     {
         if(currentLevel == 1){
             yield return StartCoroutine(FadeCanvas(0f, 2f));
-            fillImage.color = new Color(128f, 255f, 253f, 1f);
+            fillImage.color = new Color(0.6f, 0.8f, 1f, 1f);
             caveEntranceIce.SetActive(true);
             yield return StartCoroutine(FadeCanvas(2f, 0f));
         }else if(currentLevel == 2){
             yield return StartCoroutine(FadeCanvas2(0f, 2f));
-            fillImage.color = new Color(252f, 3f, 3f, 1f);
+            fillImage.color = new Color(1f, 0f, 0f, 1f);
             caveEntranceMagma.SetActive(true);
             yield return StartCoroutine(FadeCanvas2(2f, 0f));
         }
@@ -202,6 +202,49 @@ public class GameManager : MonoBehaviour
         }
         fadeCanvas2.alpha = to;
         yield break;
+    }
+
+    public IEnumerator EndLevelSequence(GameObject turtle)
+    {
+        TurtleController turtleController = turtle.GetComponent<TurtleController>();
+        Animator anim = turtle.GetComponent<Animator>();
+        
+        turtleController.controlsEnabled = false;
+        
+        turtle.transform.localScale = new Vector3(-1, 1, 1);
+        anim.SetBool("forceWalk", true);
+
+        float walkTime = 0.5f;
+        float timer = 0f;
+
+        while (timer < walkTime)
+        {
+            turtleController.rb.linearVelocity = new Vector2(moveSpeed, 0f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        turtleController.rb.linearVelocity = Vector2.zero;
+        anim.SetBool("forceWalk", false);
+        StartCoroutine(FadeSpriteOut(turtle.GetComponent<SpriteRenderer>(), 0.5f));
+        Destroy(turtle);
+        nextLevel();
+    }
+
+    public IEnumerator FadeSpriteOut(SpriteRenderer sprite, float duration)
+    {
+        Color originalColor = sprite.color;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, time / duration);
+            sprite.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        sprite.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f); // fully transparent
     }
 
 }
