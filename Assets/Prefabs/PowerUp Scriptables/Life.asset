@@ -18,5 +18,5 @@ MonoBehaviour:
   count: 0
   speedBuff: 0
   jumpBuff: 0
-  lifeBuff: 5
+  lifeBuff: 2.5
   special: 

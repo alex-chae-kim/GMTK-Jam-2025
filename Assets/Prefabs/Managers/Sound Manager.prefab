@@ -50,6 +50,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     music: 1
+    narration: 0
+    randomNarration: 0
     loop: 0
     source: {fileID: 0}
     length: 0
@@ -60,6 +62,200 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     music: 0
+    narration: 0
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Death
+    clip: {fileID: 8300000, guid: 139aaac7d34ce90428b516840dc90238, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 0
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Jump
+    clip: {fileID: 8300000, guid: 07cc99e7c65dfe8428803fdbdda5bc39, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 0
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Powerup
+    clip: {fileID: 8300000, guid: 85d38aa4b217bba4a94befb1f2af7698, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 0
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Music
+    clip: {fileID: 8300000, guid: 78cd194a4398b604ea65e0bd3c7142aa, type: 3}
+    volume: 1
+    pitch: 1
+    music: 1
+    narration: 0
+    randomNarration: 0
+    loop: 1
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Beginning Narration
+    clip: {fileID: 8300000, guid: 785ba53157f1a15429c4f34a5264cb54, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Frozen Cave Narration
+    clip: {fileID: 8300000, guid: 7cb9b5f3341a8b34f81a05d04d1f515f, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Magma Cave Narration
+    clip: {fileID: 8300000, guid: bbe17c316ed4f854586da83d005273e2, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: First Death Narration
+    clip: {fileID: 8300000, guid: 95e0417235dc11a4ca10762257a330b5, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: First Respawn Narration
+    clip: {fileID: 8300000, guid: 9a26ab705ebd91343bf285828048d268, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: RD1
+    clip: {fileID: 8300000, guid: 2b021a40e6601f54f9c7365cc01e89a2, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 1
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: RD2
+    clip: {fileID: 8300000, guid: ea16448d9d41e6940b66ca0ca38ed727, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 1
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: RD3
+    clip: {fileID: 8300000, guid: 0f9b3361d479d7e489344934a219a64f, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 1
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: RD4
+    clip: {fileID: 8300000, guid: 7b7075aa81bdf584ea1de36237bb2120, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 1
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: RD5
+    clip: {fileID: 8300000, guid: 69857570405752d498c5f67ddc605e6d, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 1
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: RD6
+    clip: {fileID: 8300000, guid: 60a20507e91051b45870ca440c4398f6, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 1
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: RD7
+    clip: {fileID: 8300000, guid: 22b1cccd511df11478a81429ec18eb83, type: 3}
+    volume: 1
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 1
     loop: 0
     source: {fileID: 0}
     length: 0

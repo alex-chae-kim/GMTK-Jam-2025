@@ -143,9 +143,16 @@ MonoBehaviour:
   iceLayer:
     serializedVersion: 2
     m_Bits: 128
+  dashingPower: 10
+  dashingTime: 0.2
+  dashingCooldown: 1
+  maxJumps: 1
+  numJumpsRemaining: 0
+  canDash: 0
   lifetime: 10
   healthBar: {fileID: 0}
   shellPrefab: {fileID: 1209844875217372562, guid: b9990b8b8422b3e4a918d07726ab9300, type: 3}
+  shellPrefabFlipped: {fileID: 1209844875217372562, guid: cbde6702611a1674d9cbcaafed05517b, type: 3}
   camera: {fileID: 0}
   gameManager: {fileID: 0}
   spriteRenderer: {fileID: 0}

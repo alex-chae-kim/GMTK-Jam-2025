@@ -17,46 +17,70 @@ public class TurtleController : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public LayerMask whatIsGround;
     public LayerMask iceLayer;
+    private bool isDashing = false;
+    [SerializeField] float dashingPower = 10f;
+    [SerializeField] float dashingTime = 0.2f;
+    [SerializeField] float dashingCooldown = 1f;
 
     //Variables Altered by Powerups
     public int maxJumps = 1;
     public int numJumpsRemaining;
+    public bool canDash = false;
+    public bool dashUnlocked = false;
     
+    public bool canDestroy = false;
+    public bool destoryUnlock = false;
 
     //other
     public float lifetime;
     public Slider healthBar;
     public GameObject shellPrefab;
+    public GameObject shellPrefabFlipped;
     public GameObject camera;
     public GameManager gameManager;
     public SpriteRenderer spriteRenderer;
     public Animator animator;
+    public GameObject cooldownUI;
 
     public Rigidbody2D rb;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool wasFalling;
     public float moveInput;
     private BoxCollider2D boxCollider;
     private PolygonCollider2D polygonCollider;
     private bool dead = false;
+    private bool left = true;
 
     void Awake()
     {
+        canDash = false;
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         polygonCollider = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        animator.SetBool("dead", false);
 
         if (healthBar != null)
         {
             healthBar.maxValue = lifetime;
             healthBar.value = lifetime;
         }
+
+        cooldownUI = GameObject.Find("Game UI/CoolDownUI");
     }
 
     void Update()
     {
+        lifetime -= Time.deltaTime;
+        if (healthBar != null)
+        {
+            healthBar.value = Mathf.Clamp(lifetime, 0, healthBar.maxValue);
+        }
+        if (isDashing)
+        {
+            return;
+        }
         airAcceleration = moveSpeed;
         iceAcceleration = 5 * moveSpeed;
 
@@ -67,11 +91,13 @@ public class TurtleController : MonoBehaviour
             {
                 animator.SetBool("walking", true);
                 transform.localScale = new Vector3(-1, 1, 1); // Facing right
+                left = false;
             }
             else if (moveInput < 0)
             {
                 animator.SetBool("walking", true);
                 transform.localScale = new Vector3(1, 1, 1); // Facing left
+                left = true;
             }
             else
             {
@@ -90,30 +116,35 @@ public class TurtleController : MonoBehaviour
                     wasFalling = false;
                     animator.SetBool("falling", false);
                     animator.SetTrigger("landed");
-                    
+                    numJumpsRemaining = maxJumps;
+                    Debug.Log("Landed, resetting jumps to " + numJumpsRemaining);
                 }
-                numJumpsRemaining = maxJumps;
             } 
             else
             {
                 animator.SetBool("grounded", false);
             }
-            lifetime -= Time.deltaTime;
-            if (healthBar != null)
-{
-    healthBar.value = Mathf.Clamp(lifetime, 0, healthBar.maxValue);
-}
+            
 
             if ((lifetime <= 0 || Input.GetKeyDown(KeyCode.Q)) && !dead)
             {
                 dead = true;
                 StartCoroutine(turtleDeath());
             }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                StartCoroutine(Dash());
+            }
         }
     }
 
     void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
         // Adjust gravity scale: double when falling, normal when rising or grounded
         if (rb.linearVelocity.y < 0)
         {
@@ -158,6 +189,7 @@ public class TurtleController : MonoBehaviour
 
     void Jump()
     {
+        AudioManager.Instance.Play("Jump");
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         animator.SetTrigger("jump");
@@ -182,11 +214,20 @@ public class TurtleController : MonoBehaviour
         Destroy(boxCollider); // Remove box collider
         Destroy(polygonCollider); // Remove polygon collider
         // Play death animation
+        animator.SetBool("dead", true);
         yield return new WaitForSeconds(2f);
-        GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
+        if (left)
+        {
+            GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            GameObject shell = Instantiate(shellPrefabFlipped, transform.position, Quaternion.identity);
+        }
         if (once)
         {
             once = false;
+            AudioManager.Instance.Play("Death");
             gameManager.initiateNextTurtleLife();
         }
         yield return new WaitForSeconds(2f);
@@ -195,7 +236,28 @@ public class TurtleController : MonoBehaviour
         // Disable camera and pan back to start
         // Get rid of turtle and replace it with shell object
     }
-
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        AudioManager.Instance.Play("Dash");
+        float originalGravity = rb.gravityScale;
+        Vector2 dashingDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+        if (dashingDirection == Vector2.zero)
+        {
+            dashingDirection = new Vector2(-transform.localScale.x, 0);
+        }
+        rb.gravityScale = 0f;
+        rb.linearVelocity = dashingDirection.normalized * dashingPower;
+        
+        yield return new WaitForSeconds(dashingTime);
+        
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        cooldownUI.GetComponent<CoolDownUI>().startCooldown(dashingCooldown);
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
     public void ResetLifetime(float newLifetime)
     {
         lifetime = newLifetime;

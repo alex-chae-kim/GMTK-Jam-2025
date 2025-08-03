@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba4cea9940a2bad449fcc3831bd7ea5e, type: 3}
-  m_Name: Gun
+  m_Name: Double Jump
   m_EditorClassIdentifier: 
   name: Double Jump
   description: Turtle go wee twice
-  image: {fileID: 1592678549170929119, guid: 1de793d266a94284dbacf375c3d93c55, type: 3}
+  image: {fileID: -162720302111601175, guid: 0ae2372c3d3dd5843ba8fcc0fe77aad1, type: 3}
   count: 0
   speedBuff: 0
   jumpBuff: 0
   lifeBuff: 0
   special: DoubleJump
+  color: {r: 0.12677999, g: 0.7037015, b: 0.7264151, a: 1}

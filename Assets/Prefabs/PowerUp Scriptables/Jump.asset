@@ -17,6 +17,6 @@ MonoBehaviour:
   image: {fileID: 1592678549170929119, guid: 1de793d266a94284dbacf375c3d93c55, type: 3}
   count: 0
   speedBuff: 0
-  jumpBuff: 5
+  jumpBuff: 0.2
   lifeBuff: 0
   special: 

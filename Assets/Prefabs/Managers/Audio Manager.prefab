@@ -46,4 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundFXGroup: {fileID: -874828868127728202, guid: 1db405029da807240a87319f53b8da8f, type: 2}
   musicGroup: {fileID: -3036881154596201286, guid: 1db405029da807240a87319f53b8da8f, type: 2}
+  narrationGroup: {fileID: -4080397637787791354, guid: 1db405029da807240a87319f53b8da8f, type: 2}
   soundManager: {fileID: 1982861753852195123, guid: 952c77b525b856f4cb7f0b2456bdc941, type: 3}
+  isNarrating: 0
+  randomNarrationSounds: []

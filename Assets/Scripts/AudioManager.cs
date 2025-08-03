@@ -1,6 +1,10 @@
 using UnityEngine;
 using System;
 using UnityEngine.Audio;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,7 +12,12 @@ public class AudioManager : MonoBehaviour
 
     public AudioMixerGroup soundFXGroup;
     public AudioMixerGroup musicGroup;
+    public AudioMixerGroup narrationGroup;
     public SoundManager soundManager;
+
+    public bool isNarrating;
+    public List<Sound> randomNarrationSounds;
+    bool[] alreadyPlayed;
 
     void Awake()
     {
@@ -25,15 +34,30 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.outputAudioMixerGroup = s.music ? musicGroup : soundFXGroup;
-
+            if (s.music)
+            {
+                s.source.outputAudioMixerGroup = musicGroup;
+            } else if (s.narration)
+            {
+                s.source.outputAudioMixerGroup = narrationGroup;
+            } else
+            {
+                s.source.outputAudioMixerGroup = soundFXGroup;
+            }
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.frequency = s.clip.frequency;
             s.samples = s.clip.samples;
             s.length = s.clip.length;
             s.source.loop = s.loop;
+
+            if (s.narration && s.randomNarration)
+            {
+                randomNarrationSounds.Add(s);
+            }
         }
+        alreadyPlayed = new bool[randomNarrationSounds.Count];
+        for (int i = 0; i < randomNarrationSounds.Count; i++) { alreadyPlayed[i] = false; }
     }
 
     /// <summary>
@@ -69,6 +93,108 @@ public class AudioManager : MonoBehaviour
         return s;
     }
 
+    public IEnumerator playWithFadeIn (string name)
+    {
+        Sound s = Array.Find(soundManager.sounds, sounds => sounds.name == name);
+        if (s != null)
+        {
+            s.source.volume = 0f; // Start volume at 0 for fade-in
+            s.source.Play();
+            while (s.source.volume < s.volume)
+            {
+                s.source.volume += Time.deltaTime / 3f; // Adjust the fade-in duration as needed
+                yield return null;
+            }
+            s.source.volume = s.volume; // Ensure it reaches the target volume
+        }
+    }
+
+    public bool playRandomNarration()
+    {
+        int randomNumber = UnityEngine.Random.Range(0, randomNarrationSounds.Count);
+        int totalSounds = 0;
+        while (alreadyPlayed[randomNumber] && totalSounds < randomNarrationSounds.Count)
+        {
+            randomNumber++;
+            totalSounds++;
+            if (randomNumber >= randomNarrationSounds.Count)
+            {
+                randomNumber = 0;
+            }
+        }
+        if (totalSounds >= randomNarrationSounds.Count)
+        {
+            return false; // All narration sounds have been played
+        }
+        if (isNarrating)
+        {
+            return false; // If narration is already playing, do not play another
+        }
+        else
+        {
+            Play(randomNarrationSounds[randomNumber].name);
+        }
+        return true; // Successfully played a random narration sound
+    }
+
+    public IEnumerator playNarration(string name)
+    {
+        float originalMusicVol = 1;
+        // fade out all music
+        foreach (Sound s in soundManager.sounds)
+        {
+            if (s.music && s.source.isPlaying)
+            {
+                originalMusicVol = s.source.volume; // Store original volume
+                float threshold = Math.Min(s.source.volume, 0.5f);
+                yield return StartCoroutine(FadeOut(s, threshold)); // Fade out music
+            }
+        }
+        //play narration
+        Sound narrationSound = Array.Find(soundManager.sounds, sounds => sounds.name == name);
+        Play(narrationSound.name);
+        isNarrating = true;
+        yield return new WaitUntil(() => !narrationSound.source.isPlaying);
+        isNarrating = false;
+        // fade in all music
+        foreach (Sound s in soundManager.sounds)
+        {
+            if (s.music && s.source.isPlaying)
+            {
+                StartCoroutine(FadeIn(s, originalMusicVol)); // Fade out music
+            }
+        }
+        
+    }
+
+    public void adjustVolume(float newVolume, string name)
+    {
+        Sound s = Array.Find(soundManager.sounds, sounds => sounds.name == name);
+        if (s != null)
+        {
+            s.source.volume = newVolume;
+        }
+    }
+
+    public IEnumerator FadeOut(Sound s, float threshold)
+    {
+        while (s.source.volume > threshold)
+        {
+            s.source.volume -= Time.deltaTime / 2f;
+            yield return null;
+        }
+        s.source.volume = threshold; // Ensure it reaches the target volume
+    }
+
+    public IEnumerator FadeIn(Sound s, float threshold)
+    {
+        while (s.source.volume < threshold)
+        {
+            s.source.volume += Time.deltaTime / 2f;
+            yield return null;
+        }
+        s.source.volume = threshold; // Ensure it reaches the target volume
+    }
     /// <summary>
     /// Stops a sound by name
     /// </summary>

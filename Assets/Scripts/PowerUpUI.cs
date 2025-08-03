@@ -2,8 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-
-
+using System.Linq;
+using UnityEditor;
 
 public class PowerUpUI : MonoBehaviour
 {
@@ -11,9 +11,16 @@ public class PowerUpUI : MonoBehaviour
     public GameObject[] cards;
     public PowerUp[] powerUps;
     public GameObject player;
+    public TextMeshProUGUI descriptionText;
     PowerUp[] currentPowers;
+    public EggTilt eggTilt1;
+    public EggTilt eggTilt2;
+    public EggTilt eggTilt3;
+    public Sprite[] eggImages;
 
-    
+    public GameObject[] powerUpIcons;
+
+    [SerializeField] int maxLevel = 3;
     public bool special = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,10 +30,8 @@ public class PowerUpUI : MonoBehaviour
         //description.GetComponent<TextMeshProUGUI>().text = "pridesogged";
         //GameObject description2 = cards[1].gameObject.transform.GetChild(2).gameObject;
         //description2.GetComponent<TextMeshProUGUI>().text = powerUps[0].description;
-
-        //player = GameObject.FindWithTag("Player");
         
-
+        //player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -35,9 +40,26 @@ public class PowerUpUI : MonoBehaviour
         
     }
 
+    public void setPlayer(GameObject playerObject)
+    {
+        player = playerObject;
+    }
+
     private void OnEnable()
     {
+        //player = GameObject.FindWithTag("Player");
         gameManager.pauseGame();
+        print("Current Life: " + gameManager.numLives);
+        if (gameManager.numLives == 0)
+        {
+            print("Setting powerup counts to 0");
+            for (int i = 0; i < powerUps.Length; i++)
+            {
+                powerUps[i].count = 0;
+
+            }
+        }
+        
         if(!special)
         {
             generateCards();
@@ -46,8 +68,10 @@ public class PowerUpUI : MonoBehaviour
     }
     private void generateCards()
     {
-        
-        
+        eggTilt1.ResetTilt();
+        eggTilt2.ResetTilt();
+        eggTilt3.ResetTilt();
+
         currentPowers = new PowerUp[cards.Length];
         for (int i = 0; i < powerUps.Length; i++)
         {
@@ -57,44 +81,64 @@ public class PowerUpUI : MonoBehaviour
             print(chosenPower);
             currentPowers[i] = chosenPower;
 
-            GameObject name = cards[i].gameObject.transform.GetChild(3).gameObject;
+            GameObject name = cards[i].gameObject.transform.GetChild(1).gameObject;
             name.GetComponent<TextMeshProUGUI>().text = chosenPower.name;
 
-            GameObject description = cards[i].gameObject.transform.GetChild(2).gameObject;
-            description.GetComponent<TextMeshProUGUI>().text = chosenPower.description;
+            GameObject image = cards[i].gameObject.transform.GetChild(2).gameObject;
+            image.GetComponent<Image>().sprite = eggImages[i];
+            
 
-            GameObject image = cards[i].gameObject.transform.GetChild(4).gameObject;
-            image.GetComponent<Image>().sprite = chosenPower.image;
-
-            GameObject button = cards[i].gameObject.transform.GetChild(1).gameObject;
-            button.GetComponentInChildren<TextMeshProUGUI>().text = chosenPower.name;
+            GameObject button = cards[i].gameObject.transform.GetChild(0).gameObject;
+            if (chosenPower.count >= maxLevel)
+            {
+                image.GetComponent<Image>().color = Color.gray;
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Maxed";
+                button.GetComponent<Button>().interactable = false;
+                button.GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
+            }
         }
     }
 
     public void generateSpecial(PowerUp specialPower)
     {
+        eggTilt2.ResetTilt();
         this.gameObject.SetActive(true);
         cards[0].SetActive(false);
         cards[2].SetActive(false);
         currentPowers[1] = specialPower;
 
-        GameObject name = cards[1].gameObject.transform.GetChild(3).gameObject;
+        descriptionText.text = "A special power-up has been found!";
+
+        GameObject name = cards[1].gameObject.transform.GetChild(1).gameObject;
         name.GetComponent<TextMeshProUGUI>().text = specialPower.name;
+        name.GetComponent<TextMeshProUGUI>().color = specialPower.color;
 
-        GameObject description = cards[1].gameObject.transform.GetChild(2).gameObject;
-        description.GetComponent<TextMeshProUGUI>().text = specialPower.description;
-
-        GameObject image = cards[1].gameObject.transform.GetChild(4).gameObject;
+        GameObject image = cards[1].gameObject.transform.GetChild(2).gameObject;
         image.GetComponent<Image>().sprite = specialPower.image;
 
-        GameObject button = cards[1].gameObject.transform.GetChild(1).gameObject;
-        button.GetComponentInChildren<TextMeshProUGUI>().text = specialPower.name;
+        GameObject button = cards[1].gameObject.transform.GetChild(0).gameObject;
+        button.GetComponentInChildren<TextMeshProUGUI>().text = "Unlock";
+        button.GetComponent<Image>().color = specialPower.color;
+
 
         if(specialPower.special == "DoubleJump")
         {
            TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.maxJumps++;
             playerController.numJumpsRemaining = playerController.maxJumps;
+            powerUpIcons[1].SetActive(true);
+        }else if(specialPower.special == "Dash")
+        {
+            TurtleController playerController = player.GetComponent<TurtleController>();
+            playerController.canDash = true;
+            playerController.dashUnlocked = true;
+            powerUpIcons[2].SetActive(true);
+        }else if(specialPower.special == "Pickaxe")
+        {
+            TurtleController playerController = player.GetComponent<TurtleController>();
+            playerController.canDestroy = true;
+            playerController.destoryUnlock = true;
+            powerUpIcons[0].SetActive(true);
         }
 
     }
@@ -113,6 +157,7 @@ public class PowerUpUI : MonoBehaviour
         gameManager.turtleHealth += currentPowers[index].lifeBuff;
         gameManager.moveSpeed += currentPowers[index].speedBuff;
 
+        currentPowers[index].count++;
         gameManager.resumeGame();
         this.gameObject.SetActive(false);
         special = false;
