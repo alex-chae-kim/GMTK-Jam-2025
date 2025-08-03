@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4cea9940a2bad449fcc3831bd7ea5e, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  name: Dash
+  name: Dash (Shift)
   description: Turtle go yippee!
   image: {fileID: 3306060472776958411, guid: c66483a9f6f3e0942a1c567de2c434c4, type: 3}
   count: 7

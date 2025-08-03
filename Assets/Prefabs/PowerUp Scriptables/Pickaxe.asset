@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4cea9940a2bad449fcc3831bd7ea5e, type: 3}
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
-  name: Hammer
+  name: Hammer (Right Click)
   description: I'm running out of test ideas
   image: {fileID: 4301844918096825189, guid: 05870009a1f9e234992d15be294a8c17, type: 3}
   count: 0
