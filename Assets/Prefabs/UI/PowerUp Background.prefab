@@ -561,7 +561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9068684008179424348, guid: 2d1bfb3ea34ff1c4582ba6849dd4392b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9215522371214079693, guid: 2d1bfb3ea34ff1c4582ba6849dd4392b, type: 3}
       propertyPath: m_Sprite
@@ -691,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 8666869271695562247}
     - target: {fileID: 9068684008179424348, guid: 2d1bfb3ea34ff1c4582ba6849dd4392b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

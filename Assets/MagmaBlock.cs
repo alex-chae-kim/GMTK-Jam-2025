@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MagmaBlock : MonoBehaviour
 {
-    public float damagePerSecond = 2f;
+    public float damagePerSecond = 10f;
     private TurtleController turtle;
 
     private void OnTriggerStay2D(Collider2D other)
@@ -16,11 +16,13 @@ public class MagmaBlock : MonoBehaviour
             {
                 turtle.lifetime -= damagePerSecond * Time.deltaTime;
                 Debug.Log(turtle.lifetime);
+                /*
                 if (turtle.healthBar != null)
                 {
                     Debug.Log("Damaing");
                     turtle.healthBar.value = Mathf.Clamp(turtle.lifetime, 0, turtle.healthBar.maxValue);
                 }
+                */
             }
         }
     }

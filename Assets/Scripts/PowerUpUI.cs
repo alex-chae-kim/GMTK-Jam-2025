@@ -20,7 +20,7 @@ public class PowerUpUI : MonoBehaviour
 
     public GameObject[] powerUpIcons;
 
-    [SerializeField] public int maxLevel = 3;
+    [SerializeField] public int maxLevel = 25;
     public bool special = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -125,16 +125,13 @@ public class PowerUpUI : MonoBehaviour
         {
            TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.maxJumps++;
-            gameManager.maxJumps++;
             playerController.numJumpsRemaining = playerController.maxJumps;
-            gameManager.numJumpsRemaining = playerController.maxJumps;
             powerUpIcons[1].SetActive(true);
         }else if(specialPower.special == "Dash")
         {
             TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.canDash = true;
             playerController.dashUnlocked = true;
-            gameManager.canDash = true;
             powerUpIcons[2].SetActive(true);
         }else if(specialPower.special == "Pickaxe")
         {
