@@ -85,7 +85,7 @@ public class StartGameManager : MonoBehaviour
         timer.SetActive(true);
         timerScript.gameStarted = true;
         Debug.Log("Game Started!");
-        canvas.SetActive(true);
+        Destroy(fadeCanvas.gameObject);
     }
 
     IEnumerator FadeCanvas(float from, float to)
