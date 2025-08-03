@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
 
         turtleController.healthBar = healthBar;
         turtleController.lifetime = turtleHealth;
+        turtleController.maxJumps = maxJumps;
         if (healthBar != null)
         {
             healthBar.maxValue = turtleHealth;
