@@ -66,8 +66,16 @@ public class PowerUpUI : MonoBehaviour
         }
         
     }
+
+    public void closeUI()
+    {
+        gameManager.resumeGame();
+        this.gameObject.SetActive(false);
+    }
+
     private void generateCards()
     {
+        descriptionText.text = "Pass on a Trait to the Next Generation";
         eggTilt1.ResetTilt();
         eggTilt2.ResetTilt();
         eggTilt3.ResetTilt();

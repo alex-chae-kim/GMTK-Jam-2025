@@ -81,7 +81,6 @@ public class ShellInteractable : MonoBehaviour
         isHovered = false;
         outline.SetActive(false);
 
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
     }
 }
