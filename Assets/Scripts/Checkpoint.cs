@@ -6,6 +6,8 @@ using System;
 public class Checkpoint : MonoBehaviour
 {
     private bool triggered = false;
+    public bool left;
+    public bool last;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +16,14 @@ public class Checkpoint : MonoBehaviour
         {
             triggered = true;
             GameManager gm = FindObjectOfType<GameManager>();
-            gm.StartCoroutine(gm.EndLevelSequence(other.gameObject));
+            if (last)
+            {
+                gm.StartCoroutine(gm.FinalSequence(other.gameObject, left));
+            }
+            else
+            {
+                gm.StartCoroutine(gm.EndLevelSequence(other.gameObject, left));
+            }
         }
     }
 }

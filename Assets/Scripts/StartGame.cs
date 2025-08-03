@@ -18,6 +18,7 @@ public class StartGameManager : MonoBehaviour
     public Timer timerScript;
     public AudioManager audioManager;
     public GameObject skipText;
+    public GameObject canvas;
 
     public float fallSpeed = 3f;
     public float groundY = -10f;
@@ -28,6 +29,7 @@ public class StartGameManager : MonoBehaviour
 
     public void Start(){
         turtleAnimator.Play("walk");
+        canvas.SetActive(false);
     }
 
     public void OnStartButtonClicked()
@@ -84,6 +86,7 @@ public class StartGameManager : MonoBehaviour
         timerScript.gameStarted = true;
         bg.SetActive(false);
         Debug.Log("Game Started!");
+        canvas.SetActive(true);
     }
 
     IEnumerator FadeCanvas(float from, float to)

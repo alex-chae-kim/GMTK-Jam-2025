@@ -24,10 +24,19 @@ public class GameManager : MonoBehaviour
     public float startMenuDisableDelay = 2f;
     public CanvasGroup fadeCanvas;
     public CanvasGroup fadeCanvas2;
+    public bool gameOver;
+    public GameObject skipText;
 
     public float moveSpeed = 2f;
     public float jumpForce = 5f;
     public float turtleHealth = 10f;
+
+    public GameObject finalCamFollowTargetPrefab;
+    public Transform finalCameraStartPoint;
+    public Transform finalCameraEndPoint;
+    public Transform finalCameraStaticPoint;
+    public float finalCamMoveSpeed = 2f;
+    public GameObject leaderboard;
 
     private float runOutDistance = 4f; // distance in # of tiles the turtle runs out of cave on its own
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -209,14 +218,19 @@ public class GameManager : MonoBehaviour
         yield break;
     }
 
-    public IEnumerator EndLevelSequence(GameObject turtle)
+    public IEnumerator EndLevelSequence(GameObject turtle, bool left)
     {
+        skipText.SetActive(true);
         TurtleController turtleController = turtle.GetComponent<TurtleController>();
         Animator anim = turtle.GetComponent<Animator>();
         
         turtleController.controlsEnabled = false;
         
-        turtle.transform.localScale = new Vector3(-1, 1, 1);
+        if(left){
+            turtle.transform.localScale = new Vector3(1, 1, 1);
+        }else{
+            turtle.transform.localScale = new Vector3(-1, 1, 1);
+        }
         anim.SetBool("forceWalk", true);
 
         float walkTime = 0.5f;
@@ -224,7 +238,11 @@ public class GameManager : MonoBehaviour
 
         while (timer < walkTime)
         {
-            turtleController.rb.linearVelocity = new Vector2(moveSpeed, 0f);
+            if(left){
+                turtleController.rb.linearVelocity = new Vector2(-moveSpeed, 0f);
+            }else{
+                turtleController.rb.linearVelocity = new Vector2(moveSpeed, 0f);
+            }
             timer += Time.deltaTime;
             yield return null;
         }
@@ -250,6 +268,71 @@ public class GameManager : MonoBehaviour
         }
 
         sprite.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f); // fully transparent
+    }
+
+    public IEnumerator FinalSequence(GameObject turtle, bool left)
+    {
+        skipText.SetActive(true);
+        TurtleController turtleController = turtle.GetComponent<TurtleController>();
+        Animator anim = turtle.GetComponent<Animator>();
+
+        turtleController.controlsEnabled = false;
+        turtleController.rb.linearVelocity = Vector2.zero;
+
+        turtle.transform.localScale = left ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+        anim.SetBool("forceWalk", true);
+
+        float walkTime = 0.5f;
+        float timer = 0f;
+
+        while (timer < walkTime)
+        {
+            turtleController.rb.linearVelocity = left ? new Vector2(-moveSpeed, 0f) : new Vector2(moveSpeed, 0f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        turtleController.rb.linearVelocity = Vector2.zero;
+        anim.SetBool("forceWalk", false);
+
+        yield return StartCoroutine(FadeSpriteOut(turtle.GetComponent<SpriteRenderer>(), 0.5f));
+        Destroy(turtle);
+
+        GameObject camObj = turtleController.camera;
+        CinemachineCamera vcam = camObj.GetComponent<CinemachineCamera>();
+
+        GameObject followTarget = Instantiate(finalCamFollowTargetPrefab, finalCameraStartPoint.position, Quaternion.identity);
+        yield return StartCoroutine(FadeCanvas(0f, 1f));
+        vcam.Target.TrackingTarget = followTarget.transform;
+        yield return new WaitForSecondsRealtime(1f);
+        yield return StartCoroutine(FadeCanvas(1f, 0f));
+
+        Vector3 startPos = finalCameraStartPoint.position;
+        Vector3 endPos = finalCameraEndPoint.position;
+        float moveTime = 20f;
+        float elapsed = 0f;
+
+        while (elapsed < moveTime)
+        {
+            if (Input.GetKey(KeyCode.E)){
+                break;
+            };
+            followTarget.transform.position = Vector3.Lerp(startPos, endPos, elapsed / moveTime);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        Vector3 finalPos = finalCameraStaticPoint.position;
+        float finalMoveTime = 0.1f;
+        float finalElapsed = 0f;
+
+        yield return StartCoroutine(FadeCanvas(0f, 1f));
+        skipText.SetActive(false);
+        followTarget.transform.position = finalPos;
+        yield return new WaitForSecondsRealtime(1f);
+        leaderboard.SetActive(true);
+        yield return StartCoroutine(FadeCanvas(1f, 0f));
+        gameOver = true;
     }
 
 }

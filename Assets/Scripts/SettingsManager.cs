@@ -6,13 +6,13 @@ public class SettingsManager : MonoBehaviour
     public GameObject settingsPopupPrefab;
     public SettingsPopup settingsPopupInScene;
     private GameObject popupInstance;
-    public StartGameManager startGame;
+    public GameManager gameManager;
     private bool isPopupOpen = false;
 
     void Update()
     {
-        if(!startGame.isFalling){
-            if (Input.GetKeyDown(KeyCode.E))
+        if(gameManager.gameOver) return;
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (!settingsPopupInScene.gameObject.activeSelf)
             {
@@ -22,7 +22,6 @@ public class SettingsManager : MonoBehaviour
             {
                 settingsPopupInScene.ClosePopup();
             }
-        }
         }
     }
 
