@@ -84,7 +84,6 @@ public class StartGameManager : MonoBehaviour
         healthBar.SetActive(true);
         timer.SetActive(true);
         timerScript.gameStarted = true;
-        bg.SetActive(false);
         Debug.Log("Game Started!");
         canvas.SetActive(true);
     }

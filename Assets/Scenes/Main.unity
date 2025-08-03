@@ -35091,8 +35091,8 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.22656251
-    y: -0.024074074
+    x: 0
+    y: 0.055555556
     width: 0.33333334
     height: 0.3333333
   near clip plane: 0.3
@@ -56803,7 +56803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1071895468}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1950046976}
   gameStarted: 0
   score: 0
 --- !u!1 &1100756740
@@ -107258,6 +107258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 48752311}
     - target: {fileID: 6393492213139868322, guid: 0ae845e1474f1394596ab0a2a5a9a597, type: 3}
       propertyPath: skipText
       value: 

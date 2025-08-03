@@ -37,12 +37,14 @@ public class GameManager : MonoBehaviour
     public Transform finalCameraStaticPoint;
     public float finalCamMoveSpeed = 2f;
     public GameObject leaderboard;
+    public GameObject canvas;
 
     private float runOutDistance = 4f; // distance in # of tiles the turtle runs out of cave on its own
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private GameObject turtleToSpawn;
     void Start()
     {
+        canvas.SetActive(false);
         fillImage = healthBar.fillRect.GetComponent<Image>();
         Sound bgm = AudioManager.Instance.Play("Level1_BGM");
         if (!bgm.source.isPlaying)
@@ -169,8 +171,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void nextLevel(){
+        canvas.SetActive(true);
         currentLevel++;
         StartCoroutine(LoadNextLevel());
+        canvas.SetActive(false);
     }
 
     public IEnumerator LoadNextLevel()
@@ -272,6 +276,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator FinalSequence(GameObject turtle, bool left)
     {
+        canvas.SetActive(true);
         skipText.SetActive(true);
         TurtleController turtleController = turtle.GetComponent<TurtleController>();
         Animator anim = turtle.GetComponent<Animator>();
@@ -331,6 +336,7 @@ public class GameManager : MonoBehaviour
         followTarget.transform.position = finalPos;
         yield return new WaitForSecondsRealtime(1f);
         leaderboard.SetActive(true);
+        canvas.SetActive(false);
         yield return StartCoroutine(FadeCanvas(1f, 0f));
         gameOver = true;
     }
