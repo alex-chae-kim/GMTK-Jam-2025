@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float fadeDuration = 1f;
     public float startMenuDisableDelay = 2f;
     public CanvasGroup fadeCanvas;
+    public CanvasGroup fadeCanvas2;
 
     public float moveSpeed = 2f;
     public float jumpForce = 5f;
@@ -158,17 +159,19 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadNextLevel());
     }
 
-    IEnumerator LoadNextLevel()
+    public IEnumerator LoadNextLevel()
     {
-        yield return StartCoroutine(FadeCanvas(0f, 2f));
         if(currentLevel == 1){
+            yield return StartCoroutine(FadeCanvas(0f, 2f));
             fillImage.color = new Color(128f, 255f, 253f, 1f);
             caveEntranceIce.SetActive(true);
+            yield return StartCoroutine(FadeCanvas(2f, 0f));
         }else if(currentLevel == 2){
+            yield return StartCoroutine(FadeCanvas2(0f, 2f));
             fillImage.color = new Color(252f, 3f, 3f, 1f);
             caveEntranceMagma.SetActive(true);
+            yield return StartCoroutine(FadeCanvas2(2f, 0f));
         }
-        yield return StartCoroutine(FadeCanvas(2f, 0f));
         initiateNextTurtleLife();
         Debug.Log("Game Started!");
     }
@@ -186,4 +189,19 @@ public class GameManager : MonoBehaviour
         fadeCanvas.alpha = to;
         yield break;
     }
+
+    IEnumerator FadeCanvas2(float from, float to)
+    {
+        float time = 0;
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            float alpha = Mathf.Lerp(from, to, time / fadeDuration);
+            fadeCanvas2.alpha = alpha;
+            yield return null;
+        }
+        fadeCanvas2.alpha = to;
+        yield break;
+    }
+
 }

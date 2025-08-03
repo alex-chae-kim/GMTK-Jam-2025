@@ -6,7 +6,7 @@ using Unity.Cinemachine;
 public class StartGameManager : MonoBehaviour
 {
     public GameObject turtle;
-    public Animator turtle1Animator;
+    public Animator turtleAnimator;
     public GameObject startMenu;
     public CanvasGroup fadeCanvas;
     public CinemachineCamera virtualCamera;
@@ -21,7 +21,7 @@ public class StartGameManager : MonoBehaviour
     public bool isFalling = false;
 
     public void Start(){
-        turtle1Animator.SetTrigger("walk");
+        turtleAnimator.Play("walk");
     }
 
     public void OnStartButtonClicked()
