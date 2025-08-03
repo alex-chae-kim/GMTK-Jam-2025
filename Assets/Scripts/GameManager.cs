@@ -269,6 +269,7 @@ public class GameManager : MonoBehaviour
     {
         canvas.SetActive(true);
         skipText.SetActive(true);
+        StartCoroutine(AudioManager.Instance.playNarration("End Game Narration"));
         TurtleController turtleController = turtle.GetComponent<TurtleController>();
         Animator anim = turtle.GetComponent<Animator>();
 

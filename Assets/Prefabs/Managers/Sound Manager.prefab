@@ -165,6 +165,18 @@ MonoBehaviour:
     length: 0
     frequency: 0
     samples: 0
+  - name: End Game Narration
+    clip: {fileID: 8300000, guid: 06b340a4e20618042933e5d63aaafce0, type: 3}
+    volume: 0.5
+    pitch: 1
+    music: 0
+    narration: 1
+    randomNarration: 0
+    loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
   - name: RD1
     clip: {fileID: 8300000, guid: 2b021a40e6601f54f9c7365cc01e89a2, type: 3}
     volume: 1
