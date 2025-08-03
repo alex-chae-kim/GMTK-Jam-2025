@@ -89,6 +89,7 @@ public class PowerUpUI : MonoBehaviour
             
 
             GameObject button = cards[i].gameObject.transform.GetChild(0).gameObject;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = "Hatch";
             if (chosenPower.count >= maxLevel)
             {
                 image.GetComponent<Image>().color = Color.gray;
@@ -132,6 +133,7 @@ public class PowerUpUI : MonoBehaviour
         {
             TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.canDash = true;
+            gameManager.canDash = true;
             playerController.dashUnlocked = true;
             powerUpIcons[2].SetActive(true);
         }else if(specialPower.special == "Pickaxe")
