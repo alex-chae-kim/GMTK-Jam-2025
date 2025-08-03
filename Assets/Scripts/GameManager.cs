@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     public float fadeDuration = 1f;
     public float startMenuDisableDelay = 2f;
     public CanvasGroup fadeCanvas;
-    public CanvasGroup fadeCanvas2;
     public bool gameOver;
     public GameObject skipText;
 
@@ -38,6 +37,7 @@ public class GameManager : MonoBehaviour
     public float finalCamMoveSpeed = 2f;
     public GameObject leaderboard;
     public GameObject canvas;
+    public bool canDestroy = false;
 
     private float runOutDistance = 4f; // distance in # of tiles the turtle runs out of cave on its own
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -171,33 +171,32 @@ public class GameManager : MonoBehaviour
     }
 
     public void nextLevel(){
-        canvas.SetActive(true);
         currentLevel++;
         StartCoroutine(LoadNextLevel());
-        canvas.SetActive(false);
     }
 
     public IEnumerator LoadNextLevel()
     {
+        canvas.SetActive(true);
         if(currentLevel == 1){
             AudioManager.Instance.fadeOutHelper("Level1_BGM", 0);
-            AudioManager.Instance.playWithFadeIn("Level2_BGM");
+            StartCoroutine(AudioManager.Instance.playWithFadeIn("Level2_BGM"));
             yield return StartCoroutine(FadeCanvas(0f, 2f));
-            AudioManager.Instance.playNarration("Magma Cave Narration");
+            StartCoroutine(AudioManager.Instance.playNarration("Magma Cave Narration"));
             fillImage.color = new Color(0.6f, 0.8f, 1f, 1f);
             caveEntranceIce.SetActive(true);
             yield return StartCoroutine(FadeCanvas(2f, 0f));
         }else if(currentLevel == 2){
             AudioManager.Instance.fadeOutHelper("Level2_BGM", 0);
-            AudioManager.Instance.playWithFadeIn("Level3_BGM");
-            AudioManager.Instance.playNarration("Frozen Cave Narration");
-            yield return StartCoroutine(FadeCanvas2(0f, 2f));
+            StartCoroutine(AudioManager.Instance.playWithFadeIn("Level3_BGM"));
+            StartCoroutine(AudioManager.Instance.playNarration("Frozen Cave Narration"));
+            yield return StartCoroutine(FadeCanvas(0f, 2f));
             fillImage.color = new Color(1f, 0f, 0f, 1f);
             caveEntranceMagma.SetActive(true);
-            yield return StartCoroutine(FadeCanvas2(2f, 0f));
+            yield return StartCoroutine(FadeCanvas(2f, 0f));
         }
+        canvas.SetActive(false);
         initiateNextTurtleLife();
-        Debug.Log("Game Started!");
     }
 
     IEnumerator FadeCanvas(float from, float to)
@@ -211,20 +210,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         fadeCanvas.alpha = to;
-        yield break;
-    }
-
-    IEnumerator FadeCanvas2(float from, float to)
-    {
-        float time = 0;
-        while (time < fadeDuration)
-        {
-            time += Time.deltaTime;
-            float alpha = Mathf.Lerp(from, to, time / fadeDuration);
-            fadeCanvas2.alpha = alpha;
-            yield return null;
-        }
-        fadeCanvas2.alpha = to;
         yield break;
     }
 

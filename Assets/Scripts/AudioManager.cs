@@ -27,8 +27,14 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        float musicVol = PlayerPrefs.GetFloat("musicVolume", 1f);
+        float sfxVol = PlayerPrefs.GetFloat("sfxVolume", 1f);
+        float narrationVol = PlayerPrefs.GetFloat("narrationVolume", 1f);
 
         foreach (Sound s in soundManager.sounds)
         {
@@ -50,6 +56,10 @@ public class AudioManager : MonoBehaviour
             s.samples = s.clip.samples;
             s.length = s.clip.length;
             s.source.loop = s.loop;
+
+            if (s.music) s.source.volume = musicVol;
+            else if (s.narration) s.source.volume = narrationVol;
+            else s.source.volume = sfxVol;
 
             if (s.narration && s.randomNarration)
             {

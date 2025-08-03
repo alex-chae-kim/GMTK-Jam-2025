@@ -105,18 +105,6 @@ MonoBehaviour:
     length: 0
     frequency: 0
     samples: 0
-  - name: Music
-    clip: {fileID: 8300000, guid: 78cd194a4398b604ea65e0bd3c7142aa, type: 3}
-    volume: 1
-    pitch: 1
-    music: 1
-    narration: 0
-    randomNarration: 0
-    loop: 1
-    source: {fileID: 0}
-    length: 0
-    frequency: 0
-    samples: 0
   - name: Beginning Narration
     clip: {fileID: 8300000, guid: 785ba53157f1a15429c4f34a5264cb54, type: 3}
     volume: 1
@@ -257,6 +245,18 @@ MonoBehaviour:
     narration: 1
     randomNarration: 1
     loop: 0
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0
+  - name: Music
+    clip: {fileID: 8300000, guid: 78cd194a4398b604ea65e0bd3c7142aa, type: 3}
+    volume: 1
+    pitch: 1
+    music: 1
+    narration: 0
+    randomNarration: 0
+    loop: 1
     source: {fileID: 0}
     length: 0
     frequency: 0

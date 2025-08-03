@@ -73,6 +73,7 @@ public class StartGameManager : MonoBehaviour
 
     IEnumerator HandleFadeTransition()
     {
+        canvas.SetActive(true);
         AudioManager.Instance.fadeOutHelper("Beginning Narration", 0);
         bg.transform.position = turtle.transform.position;
         skipText.SetActive(false);
@@ -84,8 +85,9 @@ public class StartGameManager : MonoBehaviour
         healthBar.SetActive(true);
         timer.SetActive(true);
         timerScript.gameStarted = true;
+        AudioManager.Instance.Stop("Beginning Narration");
         Debug.Log("Game Started!");
-        Destroy(fadeCanvas.gameObject);
+        canvas.SetActive(false);
     }
 
     IEnumerator FadeCanvas(float from, float to)

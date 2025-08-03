@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
-using System.Collections;
+using System.Linq;
 
 public class SettingsPopup : MonoBehaviour
 {
@@ -14,12 +13,7 @@ public class SettingsPopup : MonoBehaviour
     public Button closeButton;
     public GameManager gameManager;
 
-    public AudioSource musicSource;
-    public AudioSource sfxSource;
-    public AudioSource narrationSource;
-
     public float masterVolume = 1f;
-    public bool isPlayScene;
 
     void Awake()
     {
@@ -34,12 +28,19 @@ public class SettingsPopup : MonoBehaviour
         sfxVolumeSlider.onValueChanged.AddListener(ChangeSFXVolume);
         narrationVolumeSlider.onValueChanged.AddListener(ChangeNarrationVolume);
 
-        closeButton.onClick.AddListener(() => {ClosePopup();});
+        closeButton.onClick.AddListener(ClosePopup);
 
         masterVolumeSlider.value = masterVolume;
-        musicVolumeSlider.value = musicSource.volume;
-        sfxVolumeSlider.value = sfxSource.volume;
-        narrationVolumeSlider.value = narrationSource.volume;
+        musicVolumeSlider.value = GetAverageVolume(s => s.music);
+        sfxVolumeSlider.value = GetAverageVolume(s => !s.music && !s.narration);
+        narrationVolumeSlider.value = GetAverageVolume(s => s.narration);
+    }
+
+    float GetAverageVolume(System.Predicate<Sound> match)
+    {
+        var matchingSounds = AudioManager.Instance.soundManager.sounds.Where(s => match(s)).ToList();
+        if (matchingSounds.Count == 0) return 1f;
+        return matchingSounds.Average(s => s.source.volume);
     }
 
     public void ChangeMasterVolume(float value)
@@ -52,23 +53,32 @@ public class SettingsPopup : MonoBehaviour
 
     public void ChangeMusicVolume(float value)
     {
-        AudioListener.volume = value;
-        if (musicSource != null) musicSource.volume = value;
-        PlayerPrefs.SetFloat("volume", value);
+        foreach (Sound s in AudioManager.Instance.soundManager.sounds)
+        {
+            if (s.music)
+                s.source.volume = value;
+        }
+        PlayerPrefs.SetFloat("musicVolume", value);
     }
 
     public void ChangeSFXVolume(float value)
     {
-        AudioListener.volume = value;
-        if (sfxSource != null) sfxSource.volume = value;
-        PlayerPrefs.SetFloat("volume", value);
+        foreach (Sound s in AudioManager.Instance.soundManager.sounds)
+        {
+            if (!s.music && !s.narration)
+                s.source.volume = value;
+        }
+        PlayerPrefs.SetFloat("sfxVolume", value);
     }
 
     public void ChangeNarrationVolume(float value)
     {
-        AudioListener.volume = value;
-        if (narrationSource != null) narrationSource.volume = value;
-        PlayerPrefs.SetFloat("volume", value);
+        foreach (Sound s in AudioManager.Instance.soundManager.sounds)
+        {
+            if (s.narration)
+                s.source.volume = value;
+        }
+        PlayerPrefs.SetFloat("narrationVolume", value);
     }
 
     public void OpenPopup()

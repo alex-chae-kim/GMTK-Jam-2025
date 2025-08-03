@@ -11,6 +11,7 @@ public class ShellInteractable : MonoBehaviour
     private GameObject player;
     private Color originalColor;
     private bool isHovered;
+    public GameManager gameManager;
 
     void Start()
     {
@@ -21,6 +22,12 @@ public class ShellInteractable : MonoBehaviour
         if (player == null)
         {
             Debug.LogWarning("No player with tag 'Player' found in scene.");
+        }
+
+        gameManager = FindObjectOfType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogWarning("No GameManager found in scene.");
         }
     }
 
@@ -33,7 +40,7 @@ public class ShellInteractable : MonoBehaviour
             return;
         }
 
-        if(player.GetComponent<TurtleController>().canDestroy == false)
+        if(gameManager.canDestroy == false)
         {
             return;
         }
