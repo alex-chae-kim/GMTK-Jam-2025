@@ -292,7 +292,6 @@ public class GameManager : MonoBehaviour
         anim.SetBool("forceWalk", false);
 
         yield return StartCoroutine(FadeSpriteOut(turtle.GetComponent<SpriteRenderer>(), 0.5f));
-        Destroy(turtle);
 
         GameObject camObj = turtleController.camera;
         CinemachineCamera vcam = camObj.GetComponent<CinemachineCamera>();
