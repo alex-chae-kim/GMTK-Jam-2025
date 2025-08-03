@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(AudioManager.Instance.playWithFadeIn("Level2_BGM"));
             yield return StartCoroutine(FadeCanvas(0f, 2f));
             StartCoroutine(AudioManager.Instance.playNarration("Magma Cave Narration"));
-            fillImage.color = new Color(0.6f, 0.8f, 1f, 1f);
+            fillImage.color = new Color(1f, 0f, 0f, 1f);
             caveEntranceIce.SetActive(true);
             yield return StartCoroutine(FadeCanvas(2f, 0f));
         }else if(currentLevel == 2){
@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(AudioManager.Instance.playWithFadeIn("Level3_BGM"));
             StartCoroutine(AudioManager.Instance.playNarration("Frozen Cave Narration"));
             yield return StartCoroutine(FadeCanvas(0f, 2f));
-            fillImage.color = new Color(1f, 0f, 0f, 1f);
+            fillImage.color = new Color(0.6f, 0.8f, 1f, 1f);
             caveEntranceMagma.SetActive(true);
             yield return StartCoroutine(FadeCanvas(2f, 0f));
         }
