@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public Transform finalCameraStaticPoint;
     public float finalCamMoveSpeed = 2f;
     public GameObject leaderboard;
-    public GameObject canvas;\
+    public GameObject canvas;
 
     public AudioManager audioManager;
     public SettingsPopup settingsPopup;
