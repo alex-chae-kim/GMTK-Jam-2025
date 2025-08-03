@@ -2,21 +2,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Unity.Cinemachine;
+using UnityEngine.EventSystems;
 
 public class StartGameManager : MonoBehaviour
 {
     public GameObject turtle;
+    public Transform turtleSpawnPoint;
     public Animator turtleAnimator;
     public GameObject startMenu;
     public CanvasGroup fadeCanvas;
     public CinemachineCamera virtualCamera;
     public GameManager gameManager;
     public GameObject healthBar;
+    public GameObject timer;
+    public Timer timerScript;
 
     public float fallSpeed = 3f;
     public float groundY = -10f;
     public float fadeDuration = 1f;
-    public float startMenuDisableDelay = 2f;
+    public float startMenuDisableDelay = 10f;
 
     public bool isFalling = false;
 
@@ -26,6 +30,7 @@ public class StartGameManager : MonoBehaviour
 
     public void OnStartButtonClicked()
     {
+        Debug.Log("Start Game Button Clicked!");
         startMenu.GetComponent<CanvasGroup>().interactable = false;
         virtualCamera.Follow = turtle.transform;
         isFalling = true;
@@ -34,7 +39,7 @@ public class StartGameManager : MonoBehaviour
 
     IEnumerator HandleStartSequence()
     {
-        yield return new WaitForSeconds(startMenuDisableDelay);
+        yield return new WaitForSecondsRealtime(startMenuDisableDelay);
         startMenu.SetActive(false);
     }
 
@@ -62,11 +67,14 @@ public class StartGameManager : MonoBehaviour
 
     IEnumerator HandleFadeTransition()
     {
+        fadeCanvas.transform.position = turtle.transform.position;
         yield return StartCoroutine(FadeCanvas(0f, 2f));
         Destroy(turtle);
         startMenu.SetActive(false);
         yield return StartCoroutine(FadeCanvas(2f, 0f));
         healthBar.SetActive(true);
+        timer.SetActive(true);
+        timerScript.gameStarted = true;
         gameManager.initiateNextTurtleLife();
         Debug.Log("Game Started!");
     }

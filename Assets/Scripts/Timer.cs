@@ -5,9 +5,10 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
     float elapsedTime;
-    // Update is called once per frame
+    public bool gameStarted = false;
     void Update()
     {
+        if(gameStarted == false) return;
         elapsedTime += Time.deltaTime;        
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);

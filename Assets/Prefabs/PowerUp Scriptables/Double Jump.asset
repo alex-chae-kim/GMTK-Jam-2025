@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4cea9940a2bad449fcc3831bd7ea5e, type: 3}
   m_Name: Double Jump
   m_EditorClassIdentifier: 
-  name: Double Jump
+  name: Double Jump (Space)
   description: Turtle go wee twice
   image: {fileID: -162720302111601175, guid: 0ae2372c3d3dd5843ba8fcc0fe77aad1, type: 3}
   count: 0
