@@ -45,7 +45,7 @@ public class StartGameManager : MonoBehaviour
 
     IEnumerator HandleStartSequence()
     {
-        AudioManager.Instance.playNarration("Beginning Narration");
+        StartCoroutine(AudioManager.Instance.playNarration("Beginning Narration"));
         skipText.SetActive(true);
         yield return new WaitForSecondsRealtime(startMenuDisableDelay);
         fireFlys.SetActive(false);

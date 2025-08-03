@@ -74171,6 +74171,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1488850053}
     - target: {fileID: 6348634314649327163, guid: 60182816c555d274b9158a0c46e92b65, type: 3}
+      propertyPath: fireFlys
+      value: 
+      objectReference: {fileID: 1473165045}
+    - target: {fileID: 6348634314649327163, guid: 60182816c555d274b9158a0c46e92b65, type: 3}
       propertyPath: skipText
       value: 
       objectReference: {fileID: 919819736}

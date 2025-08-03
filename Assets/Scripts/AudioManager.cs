@@ -156,11 +156,13 @@ public class AudioManager : MonoBehaviour
             if (s.music && s.source.isPlaying)
             {
                 originalMusicVol = s.source.volume; // Store original volume
-                float threshold = Math.Min(s.source.volume, 0.5f);
+                float threshold = Math.Min(s.source.volume, 0.25f);
+                Debug.Log($"Fading out music: {s.name} to threshold: {threshold}");
                 yield return StartCoroutine(FadeOut(s, threshold)); // Fade out music
             }
         }
         //play narration
+        Debug.Log($"Playing narration: {name}");
         Sound narrationSound = Array.Find(soundManager.sounds, sounds => sounds.name == name);
         Play(narrationSound.name);
         isNarrating = true;

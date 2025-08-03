@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator EndLevelSequence(GameObject turtle, bool left)
     {
-        skipText.SetActive(true);
+        //skipText.SetActive(true); Should fix bug where "press e to skip" text appears when it shouldn't
         TurtleController turtleController = turtle.GetComponent<TurtleController>();
         Animator anim = turtle.GetComponent<Animator>();
         
