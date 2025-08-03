@@ -86,6 +86,7 @@ public class StartGameManager : MonoBehaviour
         timer.SetActive(true);
         timerScript.gameStarted = true;
         AudioManager.Instance.Stop("Beginning Narration");
+        Destroy(fadeCanvas.gameObject);
         Debug.Log("Game Started!");
         canvas.SetActive(false);
     }
