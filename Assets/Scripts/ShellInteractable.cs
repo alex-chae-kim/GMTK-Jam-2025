@@ -5,6 +5,7 @@ public class ShellInteractable : MonoBehaviour
     public float interactionRange = 2.5f;
     public GameObject outline;
     public Texture2D pickaxeCursor;
+    public Texture2D cursorTexture;
     public Vector2 cursorHotspot = Vector2.zero;
 
     private SpriteRenderer spriteRenderer;
@@ -81,5 +82,6 @@ public class ShellInteractable : MonoBehaviour
         outline.SetActive(false);
 
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
     }
 }
