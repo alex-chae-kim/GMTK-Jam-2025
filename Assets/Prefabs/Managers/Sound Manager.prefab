@@ -261,3 +261,15 @@ MonoBehaviour:
     length: 0
     frequency: 0
     samples: 0
+  - name: Level1_BGM
+    clip: {fileID: 8300000, guid: 78cd194a4398b604ea65e0bd3c7142aa, type: 3}
+    volume: 0.5
+    pitch: 1
+    music: 1
+    narration: 0
+    randomNarration: 0
+    loop: 1
+    source: {fileID: 0}
+    length: 0
+    frequency: 0
+    samples: 0

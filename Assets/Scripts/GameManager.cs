@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         fillImage = healthBar.fillRect.GetComponent<Image>();
+        Sound bgm = AudioManager.Instance.Play("Level1_BGM");
+        if (!bgm.source.isPlaying)
+        {
+            bgm.source.Play();
+        }
     }
 
     // Update is called once per frame
