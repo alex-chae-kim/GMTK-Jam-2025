@@ -33,6 +33,11 @@ public class ShellInteractable : MonoBehaviour
             return;
         }
 
+        if(player.GetComponent<TurtleController>().canDestroy == false)
+        {
+            return;
+        }
+
         float dist = Vector2.Distance(player.transform.position, transform.position);
         if (dist <= interactionRange)
         {
