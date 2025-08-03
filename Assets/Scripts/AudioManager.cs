@@ -176,6 +176,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void fadeOutHelper(String s, float threshold)
+    {
+        Sound soundToFade = Array.Find(soundManager.sounds, sound => sound.name == s);
+        if (soundToFade.source.isPlaying)
+        {
+            StartCoroutine(FadeOut(soundToFade, threshold));
+        }
+
+    }
+
     public IEnumerator FadeOut(Sound s, float threshold)
     {
         while (s.source.volume > threshold)

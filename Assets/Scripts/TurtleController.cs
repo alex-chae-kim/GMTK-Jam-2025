@@ -115,7 +115,9 @@ public class TurtleController : MonoBehaviour
                 {
                     wasFalling = false;
                     animator.SetBool("falling", false);
+                    print(isGrounded);
                     animator.SetTrigger("landed");
+                    
                     numJumpsRemaining = maxJumps;
                     Debug.Log("Landed, resetting jumps to " + numJumpsRemaining);
                 }
@@ -192,7 +194,10 @@ public class TurtleController : MonoBehaviour
         AudioManager.Instance.Play("Jump");
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        animator.SetTrigger("jump");
+        if (numJumpsRemaining == maxJumps)
+        {
+            animator.SetTrigger("jump");
+        }
         numJumpsRemaining--;
     }
 

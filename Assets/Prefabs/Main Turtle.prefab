@@ -149,15 +149,20 @@ MonoBehaviour:
   maxJumps: 1
   numJumpsRemaining: 0
   canDash: 0
+  dashUnlocked: 0
+  canDestroy: 0
+  destoryUnlock: 0
   lifetime: 10
   healthBar: {fileID: 0}
-  shellPrefab: {fileID: 1209844875217372562, guid: b9990b8b8422b3e4a918d07726ab9300, type: 3}
+  shellPrefab: {fileID: 5877093550224108165, guid: ada41f903d40a054984a231cd7ec265e, type: 3}
   shellPrefabFlipped: {fileID: 1209844875217372562, guid: cbde6702611a1674d9cbcaafed05517b, type: 3}
   camera: {fileID: 0}
   gameManager: {fileID: 0}
   spriteRenderer: {fileID: 0}
   animator: {fileID: 3516581485175089429}
+  cooldownUI: {fileID: 0}
   rb: {fileID: 0}
+  isGrounded: 0
   moveInput: 0
 --- !u!50 &5718910093507232989
 Rigidbody2D:

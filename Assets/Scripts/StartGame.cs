@@ -7,15 +7,17 @@ using UnityEngine.EventSystems;
 public class StartGameManager : MonoBehaviour
 {
     public GameObject turtle;
-    public Transform turtleSpawnPoint;
     public Animator turtleAnimator;
     public GameObject startMenu;
     public CanvasGroup fadeCanvas;
+    public GameObject bg;
     public CinemachineCamera virtualCamera;
     public GameManager gameManager;
     public GameObject healthBar;
     public GameObject timer;
     public Timer timerScript;
+    public AudioManager audioManager;
+    public GameObject skipText;
 
     public float fallSpeed = 3f;
     public float groundY = -10f;
@@ -39,6 +41,8 @@ public class StartGameManager : MonoBehaviour
 
     IEnumerator HandleStartSequence()
     {
+        AudioManager.Instance.Play("Beginning Narration");
+        skipText.SetActive(true);
         yield return new WaitForSecondsRealtime(startMenuDisableDelay);
         startMenu.SetActive(false);
     }
@@ -67,15 +71,18 @@ public class StartGameManager : MonoBehaviour
 
     IEnumerator HandleFadeTransition()
     {
-        fadeCanvas.transform.position = turtle.transform.position;
+        AudioManager.Instance.fadeOutHelper("Beginning Narration", 0);
+        bg.transform.position = turtle.transform.position;
+        skipText.SetActive(false);
         yield return StartCoroutine(FadeCanvas(0f, 2f));
         Destroy(turtle);
         startMenu.SetActive(false);
+        gameManager.initiateNextTurtleLife();
         yield return StartCoroutine(FadeCanvas(2f, 0f));
         healthBar.SetActive(true);
         timer.SetActive(true);
         timerScript.gameStarted = true;
-        gameManager.initiateNextTurtleLife();
+        bg.SetActive(false);
         Debug.Log("Game Started!");
     }
 
