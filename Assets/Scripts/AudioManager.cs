@@ -204,6 +204,10 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
         s.source.volume = threshold; // Ensure it reaches the target volume
+        if (threshold <= 0)
+        {
+            s.source.Stop(); // Stop the sound if threshold is 0 or less
+        }
     }
 
     public IEnumerator FadeIn(Sound s, float threshold)

@@ -20,6 +20,8 @@ public class StartGameManager : MonoBehaviour
     public GameObject skipText;
     public GameObject canvas;
 
+    public GameObject fireFlys;
+
     public float fallSpeed = 3f;
     public float groundY = -10f;
     public float fadeDuration = 1f;
@@ -43,9 +45,10 @@ public class StartGameManager : MonoBehaviour
 
     IEnumerator HandleStartSequence()
     {
-        AudioManager.Instance.Play("Beginning Narration");
+        AudioManager.Instance.playNarration("Beginning Narration");
         skipText.SetActive(true);
         yield return new WaitForSecondsRealtime(startMenuDisableDelay);
+        fireFlys.SetActive(false);
         startMenu.SetActive(false);
     }
 
