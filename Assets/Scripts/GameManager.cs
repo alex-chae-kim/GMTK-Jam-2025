@@ -111,21 +111,30 @@ public class GameManager : MonoBehaviour
         turtlePickup.powerUpUI = powerUpUIPrefab;
         
         // set the player reference in the powerUpUI script
-        powerUpUI.setPlayer(turtle);
         // wait for a short time to allow the camera to focus on the turtle
         yield return new WaitForSeconds(2f);
 
-        
-        powerUpUIPrefab.SetActive(true);
         turtleController.healthBar = healthBar;
-        if (healthBar != null) // fill health bar bc it looks nice
+        turtleController.lifetime = turtleHealth;
+        if (healthBar != null)
         {
             healthBar.maxValue = turtleHealth;
             healthBar.value = turtleHealth;
         }
-        while (powerUpUIPrefab.activeSelf )
+
+        powerUpUI.setPlayer(turtle);
+        powerUpUIPrefab.SetActive(true);
+        while (powerUpUIPrefab.activeSelf)
         {
-            yield return null; // wait until the powerUpUI is turned off
+            yield return null;
+        }
+
+        // Update again in case power-ups changed values
+        turtleController.lifetime = turtleHealth;
+        if (healthBar != null)
+        {
+            healthBar.maxValue = turtleHealth;
+            healthBar.value = turtleHealth;
         }
 
         // set the turtle's properties
