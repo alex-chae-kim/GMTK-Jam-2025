@@ -112,13 +112,19 @@ public class AudioManager : MonoBehaviour
     public bool playRandomNarration()
     {
         int randomNumber = UnityEngine.Random.Range(0, randomNarrationSounds.Count);
-        while (alreadyPlayed[randomNumber])
+        int totalSounds = 0;
+        while (alreadyPlayed[randomNumber] && totalSounds < randomNarrationSounds.Count)
         {
             randomNumber++;
+            totalSounds++;
             if (randomNumber >= randomNarrationSounds.Count)
             {
                 randomNumber = 0;
             }
+        }
+        if (totalSounds >= randomNarrationSounds.Count)
+        {
+            return false; // All narration sounds have been played
         }
         if (isNarrating)
         {
@@ -128,7 +134,7 @@ public class AudioManager : MonoBehaviour
         {
             Play(randomNarrationSounds[randomNumber].name);
         }
-        return true;
+        return true; // Successfully played a random narration sound
     }
 
     public IEnumerator playNarration(string name)
