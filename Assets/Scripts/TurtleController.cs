@@ -219,6 +219,12 @@ public class TurtleController : MonoBehaviour
         Destroy(boxCollider); // Remove box collider
         Destroy(polygonCollider); // Remove polygon collider
         // Play death animation
+        if (once)
+        {
+            once = false;
+            AudioManager.Instance.Play("Death");
+            gameManager.initiateNextTurtleLife();
+        }
         animator.SetBool("dead", true);
         yield return new WaitForSeconds(2f);
         if (left)
@@ -229,16 +235,10 @@ public class TurtleController : MonoBehaviour
         {
             GameObject shell = Instantiate(shellPrefabFlipped, transform.position, Quaternion.identity);
         }
-        if (once)
-        {
-            once = false;
-            AudioManager.Instance.Play("Death");
-            if(gameManager.numLives == 1){
+        if(gameManager.numLives == 1){
                 AudioManager.Instance.Play("First Death Narration");
                 yield return new WaitForSecondsRealtime(7f);
                 AudioManager.Instance.Play("First Respawn Narration");
-            }
-            gameManager.initiateNextTurtleLife();
         }
         yield return new WaitForSeconds(2f);
         Destroy(camera); // Destroy the camera object

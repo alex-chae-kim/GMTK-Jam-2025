@@ -39,9 +39,6 @@ public class GameManager : MonoBehaviour
     public GameObject leaderboard;
     public GameObject canvas;
 
-    public AudioManager audioManager;
-    public SettingsPopup settingsPopup;
-
     private float runOutDistance = 4f; // distance in # of tiles the turtle runs out of cave on its own
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private GameObject turtleToSpawn;
@@ -183,17 +180,17 @@ public class GameManager : MonoBehaviour
     public IEnumerator LoadNextLevel()
     {
         if(currentLevel == 1){
-            audioManager.fadeOutHelper("Level1_BGM", 0);
-            audioManager.playWithFadeIn("Level2_BGM", settingsPopup.musicVolume);
+            AudioManager.Instance.fadeOutHelper("Level1_BGM", 0);
+            AudioManager.Instance.playWithFadeIn("Level2_BGM");
             yield return StartCoroutine(FadeCanvas(0f, 2f));
-            audioManager.playNarration("Magma Cave Narration");
+            AudioManager.Instance.playNarration("Magma Cave Narration");
             fillImage.color = new Color(0.6f, 0.8f, 1f, 1f);
             caveEntranceIce.SetActive(true);
             yield return StartCoroutine(FadeCanvas(2f, 0f));
         }else if(currentLevel == 2){
-            audioManager.fadeOutHelper("Level2_BGM", 0);
-            audioManager.playWithFadeIn("Level3_BGM", settingsPopup.musicVolume);
-            audioManager.playNarration("Frozen Cave Narration");
+            AudioManager.Instance.fadeOutHelper("Level2_BGM", 0);
+            AudioManager.Instance.playWithFadeIn("Level3_BGM");
+            AudioManager.Instance.playNarration("Frozen Cave Narration");
             yield return StartCoroutine(FadeCanvas2(0f, 2f));
             fillImage.color = new Color(1f, 0f, 0f, 1f);
             caveEntranceMagma.SetActive(true);
