@@ -126,6 +126,7 @@ public class PowerUpUI : MonoBehaviour
            TurtleController playerController = player.GetComponent<TurtleController>();
             playerController.maxJumps++;
             playerController.numJumpsRemaining = playerController.maxJumps;
+            gameManager.maxJumps++;
             powerUpIcons[1].SetActive(true);
         }else if(specialPower.special == "Dash")
         {
