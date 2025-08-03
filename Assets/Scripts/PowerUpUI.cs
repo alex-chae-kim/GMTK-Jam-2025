@@ -20,7 +20,7 @@ public class PowerUpUI : MonoBehaviour
 
     public GameObject[] powerUpIcons;
 
-    [SerializeField] int maxLevel = 3;
+    [SerializeField] public int maxLevel = 3;
     public bool special = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
