@@ -28,10 +28,14 @@ public class StartGameManager : MonoBehaviour
     public float startMenuDisableDelay = 10f;
 
     public bool isFalling = false;
+    public Texture2D customCursor;
+    public Vector2 hotSpot = Vector2.zero;
+    public Texture2D cursorTexture;
 
     public void Start(){
         turtleAnimator.Play("walk");
         canvas.SetActive(false);
+        Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.ForceSoftware);
     }
 
     public void OnStartButtonClicked()

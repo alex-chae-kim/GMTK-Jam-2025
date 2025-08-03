@@ -65576,6 +65576,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1071895470}
     - target: {fileID: 6348634314649327163, guid: 60182816c555d274b9158a0c46e92b65, type: 3}
+      propertyPath: customCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: 3367007ce371bc44ea73f599397be1a7, type: 3}
+    - target: {fileID: 6348634314649327163, guid: 60182816c555d274b9158a0c46e92b65, type: 3}
       propertyPath: fadeDuration
       value: 1
       objectReference: {fileID: 0}

@@ -190,7 +190,9 @@ MonoBehaviour:
   interactionRange: 2.5
   outline: {fileID: 5048104003683050371}
   pickaxeCursor: {fileID: 2800000, guid: 5f9e5d2bec6917d468ca7c8efcf89ff8, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 3367007ce371bc44ea73f599397be1a7, type: 3}
   cursorHotspot: {x: 0, y: 0}
+  gameManager: {fileID: 0}
 --- !u!251 &7100977073558440961
 PlatformEffector2D:
   m_ObjectHideFlags: 0
